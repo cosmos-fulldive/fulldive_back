@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="StageDMLMapper">
+	
+	<insert id="stageInsert" parameterType="Hashmap"> 
+        INSERT INTO TB_MILKOMEDA_STAGE
+        ( STAGE_ID, 
+        STAGE_MAKE_USER_ID, 
+        STAGE_TITLE, 
+        STAGE_DESCRIPTION,
+        STAGE_LOCATION,
+        STAGE_TIMESTAMP,
+		STAGE_ARTIST_ID,
+		STAGE_THUMBNAIL_IMGAE,
+		STAGE_TICKET_PRICE,
+		STAGE_CURRENT
+        ) 
+        VALUES 
+        ( #{stageId, jdbcType=NVARCHAR},
+          #{stageMakeUserId, jdbcType=NVARCHAR},
+          #{stageTitle, jdbcType=NVARCHAR},
+          #{stageDescription, jdbcType=NVARCHAR}, 
+          #{stageLocation, jdbcType=NVARCHAR},
+          #{stageTimestamp, jdbcType=NVARCHAR},
+          #{stageArtistId, jdbcType=NVARCHAR},
+          #{stageThumbnailImage, jdbcType=NVARCHAR},
+          #{stageTicketPrice, jdbcType=INTEGER},
+          #{stageCurrent, jdbcType=NVARCHAR}
+		) 
+    </insert>
+    
+    <update id="stageUpdate" parameterType="Hashmap">
+		UPDATE TB_MILKOMEDA_STAGE 	
+		SET 
+		STAGE_ID=#{stageId},
+        STAGE_MAKE_USER_ID=#{stageMakeUserId},
+        STAGE_TITLE=#{stageTitle},
+        STAGE_DESCRIPTION=#{stageDescription},
+        STAGE_LOCATION=#{stageLocation},
+        STAGE_TIMESTAMP=#{stageTimestamp},
+		STAGE_ARTIST_ID=#{stageArtistId},
+		STAGE_THUMBNAIL_IMGAE=#{stageThumbnail},
+		STAGE_TICKET_PRICE=#{stageTicketPrice},
+		STAGE_CURRENT=#{stageCurrent}
+		WHERE STAGE_ID = #{stageId} and STAGE_MAKE_USER_ID=#{userId}
+	</update>
+	
+	<delete id="stageDelete" parameterType="Hashmap">
+		DELETE FROM TB_MILKOMEDA_STAGE
+		WHERE STAGE_ID = #{stageId} and STAGE_MAKE_USER_ID=#{userId}
+	</delete>
+
+</mapper>

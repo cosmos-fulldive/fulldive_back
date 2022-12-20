@@ -1,0 +1,142 @@
+package com.fulldive.back.resource;
+
+import com.fulldive.back.entity.StageEntity;
+import com.fulldive.back.service.StageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/api")
+public class StageResource{
+	
+	@Autowired
+	StageService stageService;
+	
+	
+	
+	/*
+	 * 현재방송중인 방송리스트 조회
+	*/
+	@RequestMapping(value = "/stage/liveList")
+	public Map<String, Object> userLogin() throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>(); 
+
+		// 보내는 값 일단 보류 뭐가 들어갈지를 모르겠네,,
+		Map<String, Object> params = new HashMap<>();
+		List<StageEntity> stageLiveList = stageService.stageLiveList(params);
+		List<Map<String, Object>> resultList = new ArrayList<>();
+
+		for(StageEntity x : stageLiveList) {
+			
+			Map<String, Object> resultMap = new HashMap<>();
+			resultMap.put("id", x.getStageId());
+			resultMap.put("stageId", x.getStageId());
+			resultMap.put("stageMakeUserId", x.getStageMakeUserId());
+			resultMap.put("stageTitle", x.getStageTitle());
+			resultMap.put("stageImage", x.getStageImage());
+			resultMap.put("stageLocation", x.getStageLocation());
+			resultMap.put("stageTimestamp", x.getStageTimestamp());
+			resultMap.put("stageArtistId", x.getStageArtistId());
+			resultMap.put("stageDescription", x.getStageDescription());
+			resultMap.put("stageThumbnailImage", x.getStageThumbnailImage());
+			resultMap.put("stageTicketPrice", x.getStageTicketPrice());
+			resultMap.put("createTimestamp", x.getCreateTimestamp());
+			resultList.add(resultMap);
+			result.put("streams", resultList);
+		}
+		System.out.println("resultList" + resultList);
+		return result;	
+	}
+	
+	
+	/*
+	 * 전체스테이지 정보
+	*/
+	@PostMapping(value = "/stage/findIdLiveList")
+	public Map<String, Object> userLogin(@RequestBody Map<String, Object> params) throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>(); 
+
+		List<StageEntity> stageLiveList = stageService.stageLiveList(params);
+		List<Map<String, Object>> resultList = new ArrayList<>();
+
+		for(StageEntity x : stageLiveList) {
+			
+			Map<String, Object> resultMap = new HashMap<>();
+			resultMap.put("id", x.getStageId());
+			resultMap.put("stageId", x.getStageId());
+			resultMap.put("stageMakeUserId", x.getStageMakeUserId());
+			resultMap.put("stageTitle", x.getStageTitle());
+			resultMap.put("stageImage", x.getStageImage());
+			resultMap.put("stageLocation", x.getStageLocation());
+			resultMap.put("stageTimestamp", x.getStageTimestamp());
+			resultMap.put("stageArtistId", x.getStageArtistId());
+			resultMap.put("stageDescription", x.getStageDescription());
+			resultMap.put("stageThumbnailImage", x.getStageThumbnailImage());
+			resultMap.put("stageTicketPrice", x.getStageTicketPrice());
+			resultMap.put("createTimestamp", x.getCreateTimestamp());
+			resultList.add(resultMap);
+			result.put("streams", resultList);
+			System.out.println("result" + result);
+		}
+		System.out.println("resultList" + resultList);
+		return result;	
+	}
+	
+	
+	/*
+	 * 스테이지 정보등록
+	*/
+	@PostMapping(value = "/stage/stageInsert")
+	public int stageJoinIdChk(@RequestBody Map<String, Object> params) {
+		int result = 200;
+		System.out.println("params: " + params);
+		int resultList = stageService.stageInsert(params);
+		System.out.println(resultList);
+		if(resultList == 0) {result = 400;}
+		return result;
+	}
+	
+	/*
+	 * 스테이지 정보수정 
+	*/
+	@PostMapping(value = "/stage/stageUpdate")
+	public int stageUpdate(@RequestBody Map<String, Object> params) {
+		int result = 200;
+		System.out.println("params: " + params);
+		int resultList = stageService.stageUpdate(params);
+		System.out.println(resultList);
+		if(resultList == 0) {result = 400;}
+		return result;
+	}
+	
+	/*
+	 * 스테이지 정보삭제
+	*/
+	@PostMapping(value = "/stage/stageDelete")
+	public int stageDelete(@RequestBody Map<String, Object> params) {
+		int result = 200;
+		System.out.println("params: " + params);
+		int resultList = stageService.stageDelete(params);
+		System.out.println(resultList);
+		if(resultList == 0) {result = 400;}
+		return result;
+	}
+	
+	/*
+	 * 다가오는 스테이지
+	*/
+	@GetMapping(value = "/stage/stageBeforeDayList") 
+	public List<StageEntity> stageBeforeDayList () {
+		List<StageEntity> stageBeforeDayList = new ArrayList<>(); 
+		stageBeforeDayList = stageService.stageBeforeDayList();
+		return stageBeforeDayList;
+	}
+	
+	
+}
