@@ -4,7 +4,10 @@
 <mapper namespace="FollowReadOnlyMapper">
 	
 	<resultMap type="com.fulldive.back.entity.FollowEntity" id="FollowSelectRM">
-
+		<result property="followId" column="FOLLOW_ID"/>
+		<result property="followArtistId" column="FOLLOW_ARTIST_ID"/>
+		<result property="followUserId" column="FOLLOW_USER_ID"/>
+		<result property="followTimestamp" column="FOLLOW_TIMESTAMP"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
     

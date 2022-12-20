@@ -4,7 +4,12 @@
 <mapper namespace="PaymentReadOnlyMapper">
 	
 	<resultMap type="com.fulldive.back.entity.PayHistoryEntity" id="PaymentSelectRM">
-
+		<result property="paymentId" column="PAYMENT_ID"/>
+		<result property="paymentSendId" column="PAYMENT_SEND_ID"/>
+		<result property="paymentReceptionId" column="PAYMENT_RECEPTION_ID"/>
+		<result property="paymentPrice" column="PAYMENT_PRICE"/>
+		<result property="paymentContent" column="PAYMENT_CONTENT"/>
+		<result property="paymentTimestamp" column="PAYMENT_TIMESTAMP"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
     

@@ -4,7 +4,13 @@
 <mapper namespace="StoreReadOnlyMapper">
 	
 	<resultMap type="com.fulldive.back.entity.StoreEntity" id="StoreSelectRM">
-
+		<result property="storeId" column="STORE_ID"/>
+		<result property="storeName" column="STORE_NAME"/>
+		<result property="storePrice" column="STORE_PRICE"/>
+		<result property="storeBrand" column="STORE_BRAND"/>
+		<result property="storeCollaborationArtistId" column="STORE_COLLABORATION_ARTIST_ID"/>
+		<result property="storeContentImage" column="STORE_CONTENT_IMAGE"/>
+		<result property="storeContentUrl" column="STORE_CONTENT_URL"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
     

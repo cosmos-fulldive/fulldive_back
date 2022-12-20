@@ -4,7 +4,10 @@
 <mapper namespace="CategoryReadOnlyMapper">
 	
 	<resultMap type="com.fulldive.back.entity.CategoryEntity" id="CategorySelectRM">
-
+		<result property="userId" column="USER_ID"/>
+		<result property="categoryId" column="CATEGORY_ID"/>
+		<result property="categoryNameKr" column="CATEGORY_NAME_KR"/>
+		<result property="categoryNameEn" column="CATEGORY_NAME_EN"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
     
