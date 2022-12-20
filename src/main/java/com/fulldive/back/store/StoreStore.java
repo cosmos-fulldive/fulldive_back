@@ -10,24 +10,25 @@ import java.util.Map;
 public class StoreStore implements StoreStoreImpl{
 	
 	private final String ReadOnlyMapper = "StoreReadOnlyMapper.";
-	private final String DMLMapper = "ArtistDMLMapper.";
+	private final String DMLMapper = "StoreDMLMapper.";
 	
 	@Inject
     SqlSession sqlSession;
 
 	@Override
-	public int artistInsert(Map<String, Object> params) {
-		return sqlSession.insert(DMLMapper+"artistInsert", params);
+	public int storeInsert(Map<String, Object> params) {
+		return sqlSession.insert(DMLMapper+"storeInsert", params);
 	}
 
 	@Override
-	public int artistUpdate(Map<String, Object> params) {
-		return sqlSession.update(DMLMapper+"artistUpdate", params);
+	public int storeUpdate(Map<String, Object> params) {
+		return sqlSession.update(DMLMapper+"storeUpdate", params);
 	}
 
 	@Override
-	public int artistDelete(Map<String, Object> params) {
-		return sqlSession.delete(DMLMapper+"artistDelete", params);
+	public int storeDelete(Map<String, Object> params) {
+		return sqlSession.delete(DMLMapper+"storeDelete", params);
 	}
-
+	
+    }
 }

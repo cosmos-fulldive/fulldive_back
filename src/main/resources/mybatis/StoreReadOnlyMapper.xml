@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="StoreReadOnlyMapper">
+	
+	<resultMap type="com.fulldive.back.entity.StoreEntity" id="StoreSelectRM">
+
+		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
+	</resultMap>
+    
+</mapper>
