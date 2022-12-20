@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="StageReadOnlyMapper">
+	
+	<resultMap type="com.fulldive.back.entity.StageEntity" id="stageSelectRM">
+		<result property="stageId" column="STAGE_ID"/>
+		<result property="stageMakeUserId" column="STAGE_MAKE_USER_ID"/>
+		<result property="stageTitle" column="STAGE_TITLE"/>
+		<result property="stageImage" column="STAGE_IMAGE"/>
+		<result property="stageLocation" column="STAGE_LOCATION"/>
+		<result property="stageTimestamp" column="STAGE_TIMESTAMP"/>
+		<result property="stageArtistId" column="STAGE_ARTIST_ID"/>
+		<result property="stageDescription" column="STAGE_DESCRIPTION"/>
+		<result property="stageThumbnailImage" column="STAGE_THUMBNAIL_IMGAE"/>
+		<result property="stageTicketPrice" column="STAGE_TICKET_PRICE"/>
+		<result property="stageCurrent" column="STAGE_CURRENT"/>
+		<result property="stageTimeDifference" column="STAGE_TIME_DIFFERENCE"/>
+		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
+	</resultMap>
+	
+ 
+    <select id="stageLiveList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
+        SELECT
+			STAGE_ID,
+			STAGE_MAKE_USER_ID,
+			STAGE_TITLE,
+			STAGE_IMAGE,
+			STAGE_LOCATION,
+			convert(varchar(19), STAGE_TIMESTAMP, 120) "STAGE_TIMESTAMP",
+			STAGE_ARTIST_ID,
+			STAGE_DESCRIPTION,
+			STAGE_THUMBNAIL_IMGAE,
+			STAGE_TICKET_PRICE,
+			STAGE_CURRENT,
+			CREATE_TIMESTAMP
+		FROM
+			TB_MILKOMEDA_STAGE
+		WHERE 1=1
+			AND STAGE_CURRENT = 'B'
+		ORDER BY STAGE_TIMESTAMP DESC	
+    </select>
+    
+    <select id="stageFindById" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
+        SELECT
+			STAGE_ID,
+			STAGE_MAKE_USER_ID,
+			STAGE_TITLE,
+			STAGE_IMAGE,
+			STAGE_LOCATION,
+			STAGE_TIMESTAMP,
+			STAGE_ARTIST_ID,
+			STAGE_DESCRIPTION,
+			STAGE_THUMBNAIL_IMGAE,
+			STAGE_TICKET_PRICE,
+			CREATE_TIMESTAMP
+		FROM
+			TB_MILKOMEDA_STAGE
+		WHERE 1=1
+		
+		AND STAGE_ID = #{stageId, jdbcType=NVARCHAR}
+    </select>
+    
+    <select id="stageBeforeDayList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
+	    SELECT
+			STAGE_ID,
+			STAGE_MAKE_USER_ID,
+			STAGE_TITLE,
+			STAGE_IMAGE,
+			STAGE_LOCATION,
+			convert(varchar(19), STAGE_TIMESTAMP, 120) "STAGE_TIMESTAMP",
+			STAGE_ARTIST_ID,
+			STAGE_DESCRIPTION,
+			STAGE_THUMBNAIL_IMGAE,
+			STAGE_TICKET_PRICE,
+			STAGE_CURRENT,
+			DATEDIFF(HOUR, getDate(), STAGE_TIMESTAMP) AS "STAGE_TIME_DIFFERENCE",
+			CREATE_TIMESTAMP
+		FROM 
+			TB_MILKOMEDA_STAGE 
+		WHERE 1=1
+			AND STAGE_TIMESTAMP <![CDATA[ < ]]>  getDate() + 1
+			AND STAGE_TIMESTAMP > getDate()
+	</select>
+    
+</mapper>
