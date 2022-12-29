@@ -22,27 +22,34 @@
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
 	
- 
-    <select id="stageLiveList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
-        SELECT
-			STAGE_ID,
-            CREATE_TIMESTAMP,
-            USER_ID,
-            STAGE_TITLE,
-            STAGE_IMAGE,
-            STAGE_LOCATION,
-			STAGE_TIMESTAMP,
-            STAGE_ARTIST_ID,
-            STAGE_DESCRIPTION,
-            STAGE_THUMBNAIL_IMAGE,
-            STAGE_TICKET_PRICE,
-            STAGE_CURRENT,
-            STAGE_STREAM_KEY
-		FROM
-			TB_FULLDIVE_STAGE
+	<!-- 진행중인 스테이지 4개 -->
+    <select id="stageStartList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
+		-- 다가오는 스테이지 목록 (4개)
+		SELECT * FROM (
+			  SELECT
+				  STAGE_ID,
+				  CREATE_TIMESTAMP,
+				  USER_ID,
+				  STAGE_TITLE,
+				  STAGE_IMAGE,
+				  STAGE_LOCATION,
+				  STAGE_TIMESTAMP,
+				  STAGE_ARTIST_ID,
+				  STAGE_DESCRIPTION,
+				  STAGE_THUMBNAIL_IMAGE,
+				  STAGE_TICKET_PRICE,
+				  STAGE_CURRENT,
+				  STAGE_STREAM_KEY,
+				  STAGE_COMBINE_ID,
+				  CASE WHEN STAGE_COMBINE_ID IS NULL THEN '1' ELSE '2' END AS STAGE_SEQUENCE
+			  FROM TB_FULLDIVE_STAGE
+			  WHERE 1=1
+		  ) TFSTG
 		WHERE 1=1
-			AND STAGE_CURRENT = 'S'
-		ORDER BY STAGE_TIMESTAMP DESC	
+		  AND STAGE_SEQUENCE = '1'
+		  AND STAGE_CURRENT = 'S'
+		ORDER BY STAGE_TIMESTAMP ASC
+			LIMIT 4
     </select>
     
     <select id="stageFindById" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
@@ -67,26 +74,61 @@
 		AND STAGE_ID = #{stageId}
     </select>
     
-    <select id="stageBeforeDayList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
-	    SELECT
-			STAGE_ID,
-			STAGE_MAKE_USER_ID,
-			STAGE_TITLE,
-			STAGE_IMAGE,
-			STAGE_LOCATION,
-			TO_CHAR(STAGE_TIMESTAMP, 'YYYY-MM-DD HH:MI:SS'),
-			STAGE_ARTIST_ID,
-			STAGE_DESCRIPTION,
-			STAGE_THUMBNAIL_IMGAE,
-			STAGE_TICKET_PRICE,
-			STAGE_CURRENT,
-			DATEDIFF(HOUR, getDate(), STAGE_TIMESTAMP) AS "STAGE_TIME_DIFFERENCE",
-			CREATE_TIMESTAMP
-		FROM 
-			TB_FULLDIVE_STAGE
+    <select id="stageReadyList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
+		SELECT * FROM (
+			  SELECT
+				  STAGE_ID,
+				  CREATE_TIMESTAMP,
+				  USER_ID,
+				  STAGE_TITLE,
+				  STAGE_IMAGE,
+				  STAGE_LOCATION,
+				  STAGE_TIMESTAMP,
+				  STAGE_ARTIST_ID,
+				  STAGE_DESCRIPTION,
+				  STAGE_THUMBNAIL_IMAGE,
+				  STAGE_TICKET_PRICE,
+				  STAGE_CURRENT,
+				  STAGE_STREAM_KEY,
+				  STAGE_COMBINE_ID,
+				  -(EXTRACT(EPOCH FROM NOW() - STAGE_TIMESTAMP)/3600)::Integer AS STAGE_TIME_DIFFERENCE,
+					  CASE WHEN STAGE_COMBINE_ID IS NULL THEN '1' ELSE '2' END AS STAGE_SEQUENCE
+			  FROM TB_FULLDIVE_STAGE
+			  WHERE 1=1
+		  ) TFSTG
 		WHERE 1=1
-			AND STAGE_TIMESTAMP <![CDATA[ < ]]>  getDate() + 1
-			AND STAGE_TIMESTAMP > getDate()
+		  AND STAGE_SEQUENCE = '1'
+		  AND STAGE_CURRENT = 'R'
+		ORDER BY STAGE_TIMESTAMP ASC
+			LIMIT 4
+	</select>
+
+	<select id="stageExitList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
+		SELECT * FROM (
+			  SELECT
+				  STAGE_ID,
+				  CREATE_TIMESTAMP,
+				  USER_ID,
+				  STAGE_TITLE,
+				  STAGE_IMAGE,
+				  STAGE_LOCATION,
+				  STAGE_TIMESTAMP,
+				  STAGE_ARTIST_ID,
+				  STAGE_DESCRIPTION,
+				  STAGE_THUMBNAIL_IMAGE,
+				  STAGE_TICKET_PRICE,
+				  STAGE_CURRENT,
+				  STAGE_STREAM_KEY,
+				  STAGE_COMBINE_ID,
+				  CASE WHEN STAGE_COMBINE_ID IS NULL THEN '1' ELSE '2' END AS STAGE_SEQUENCE
+			  FROM TB_FULLDIVE_STAGE
+			  WHERE 1=1
+		  ) TFSTG
+		WHERE 1=1
+		  AND STAGE_SEQUENCE = '1'
+		  AND STAGE_CURRENT = 'E'
+		ORDER BY STAGE_TIMESTAMP ASC
+			LIMIT 4
 	</select>
     
 </mapper>

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Data
 public class StageEntity {
 	private String stageId;
-	private String stageMakeUserId;
+	private String userId;
 	private String stageTitle;
 	private String stageImage;
 	private String stageLocation;
@@ -21,5 +21,6 @@ public class StageEntity {
 	private String stageCurrent;
 	private String stageTimeDifference;
 	private String stageStreamKey;
+	private String stageCombineId;
 	private String createTimestamp;
 }

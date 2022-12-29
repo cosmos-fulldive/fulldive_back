@@ -43,5 +43,11 @@ public class UserStore implements UserStoreImpl{
 	public int userDelete(Map<String, Object> params) {
 		return sqlSession.update(DMLMapper+"userDelete",params);
 	}
-	
+
+	@Override
+	public List<UserEntity> userInfo(Map<String, Object> params) {
+		System.out.println("params" + params);
+		return sqlSession.selectList(ReadOnlyMapper+"userInfo", params);
+	}
+
 }

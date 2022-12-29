@@ -23,35 +23,46 @@ public class StageResource{
 	/*
 	 * 현재방송중인 방송리스트 조회
 	*/
-	@RequestMapping(value = "/stage/liveList")
-	public Map<String, Object> userLogin() throws Exception {
-		Map<String, Object> result = new HashMap<String, Object>(); 
+	@RequestMapping(value = "/stage/startList")
+	public Map<String, Object> startList() throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>();
 
 		// 보내는 값 일단 보류 뭐가 들어갈지를 모르겠네,,
 		Map<String, Object> params = new HashMap<>();
-		List<StageEntity> stageLiveList = stageService.stageLiveList(params);
+		List<StageEntity> stageStartList = stageService.stageStartList(params);
 		List<Map<String, Object>> resultList = new ArrayList<>();
+		result.put("startList", stageStartList);
+		return result;
+	}
 
-		for(StageEntity x : stageLiveList) {
-			
-			Map<String, Object> resultMap = new HashMap<>();
-			resultMap.put("id", x.getStageId());
-			resultMap.put("stageId", x.getStageId());
-			resultMap.put("stageMakeUserId", x.getStageMakeUserId());
-			resultMap.put("stageTitle", x.getStageTitle());
-			resultMap.put("stageImage", x.getStageImage());
-			resultMap.put("stageLocation", x.getStageLocation());
-			resultMap.put("stageTimestamp", x.getStageTimestamp());
-			resultMap.put("stageArtistId", x.getStageArtistId());
-			resultMap.put("stageDescription", x.getStageDescription());
-			resultMap.put("stageThumbnailImage", x.getStageThumbnailImage());
-			resultMap.put("stageTicketPrice", x.getStageTicketPrice());
-			resultMap.put("createTimestamp", x.getCreateTimestamp());
-			resultList.add(resultMap);
-			result.put("streams", resultList);
-		}
-		System.out.println("resultList" + resultList);
-		return result;	
+	/*
+	 * 다가오는 스테이지
+	 */
+	@RequestMapping(value = "/stage/readyList")
+	public Map<String, Object> readyList() throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		// 보내는 값 일단 보류 뭐가 들어갈지를 모르겠네,,
+		Map<String, Object> params = new HashMap<>();
+		List<StageEntity> stageStartList = stageService.stageReadyList(params);
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		result.put("readyList", stageStartList);
+		return result;
+	}
+
+	/*
+	 * 지난 스테이지
+	 */
+	@RequestMapping(value = "/stage/exitList")
+	public Map<String, Object> exitList() throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		// 보내는 값 일단 보류 뭐가 들어갈지를 모르겠네,,
+		Map<String, Object> params = new HashMap<>();
+		List<StageEntity> stageStartList = stageService.stageExitList(params);
+		List<Map<String, Object>> resultList = new ArrayList<>();
+		result.put("exitList", stageStartList);
+		return result;
 	}
 	
 	
@@ -62,7 +73,7 @@ public class StageResource{
 	public Map<String, Object> userLogin(@RequestBody Map<String, Object> params) throws Exception {
 		Map<String, Object> result = new HashMap<String, Object>(); 
 
-		List<StageEntity> stageLiveList = stageService.stageLiveList(params);
+		List<StageEntity> stageLiveList = stageService.stageStartList(params);
 		List<Map<String, Object>> resultList = new ArrayList<>();
 
 		for(StageEntity x : stageLiveList) {
@@ -70,7 +81,7 @@ public class StageResource{
 			Map<String, Object> resultMap = new HashMap<>();
 			resultMap.put("id", x.getStageId());
 			resultMap.put("stageId", x.getStageId());
-			resultMap.put("stageMakeUserId", x.getStageMakeUserId());
+			resultMap.put("stageMakeUserId", x.getUserId());
 			resultMap.put("stageTitle", x.getStageTitle());
 			resultMap.put("stageImage", x.getStageImage());
 			resultMap.put("stageLocation", x.getStageLocation());
@@ -131,12 +142,12 @@ public class StageResource{
 	/*
 	 * 다가오는 스테이지
 	*/
-	@GetMapping(value = "/stage/stageBeforeDayList") 
-	public List<StageEntity> stageBeforeDayList () {
-		List<StageEntity> stageBeforeDayList = new ArrayList<>(); 
-		stageBeforeDayList = stageService.stageBeforeDayList();
-		return stageBeforeDayList;
-	}
+//	@GetMapping(value = "/stage/stageBeforeDayList")
+//	public List<StageEntity> stageBeforeDayList () {
+//		List<StageEntity> stageBeforeDayList = new ArrayList<>();
+//		stageBeforeDayList = stageService.stageReadyList();
+//		return stageBeforeDayList;
+//	}
 	
 	
 }

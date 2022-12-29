@@ -50,6 +50,11 @@ public class UserService implements UserServiceImpl {
 	public int userDelete(Map<String, Object> params) {
 		return userStore.userDelete(params);
 	}
-	
+
+	@Override
+	public List<UserEntity> userInfo(Map<String, Object> params) {
+		return userStore.userInfo(params);
+	}
+
 
 }

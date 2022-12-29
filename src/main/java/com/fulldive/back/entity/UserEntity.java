@@ -41,6 +41,14 @@ public class UserEntity {
 	@Column
 	private Integer userComet;
 	@Column
+	private Integer userTicketCount;
+	@Column
+	private Integer userTicketECount;
+	@Column
+	private Integer userTicketNCount;
+	@Column
+	private Integer userTicketPCount;
+	@Column
 	private String createTimestamp;
 }
 

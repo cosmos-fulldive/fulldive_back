@@ -8,7 +8,15 @@
 		<result property="categoryId" column="CATEGORY_ID"/>
 		<result property="categoryNameKr" column="CATEGORY_NAME_KR"/>
 		<result property="categoryNameEn" column="CATEGORY_NAME_EN"/>
+		<result property="categorySequence" column="CATEGORY_SEQUENCE"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
+
+	<select id="findCategory" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.CategoryEntity" resultMap="userSelectRM">
+		SELECT
+			CATEGORY_ID, CATEGORY_CODE, CATEGORY_NAME_KR, CATEGORY_NAME_EN, CREATE_TIMESTAMP
+		FROM TB_FULLDIVE_CATEGORY
+		ORDER BY CATEGORY_SEQUENCE ASC
+	</select>
     
 </mapper>

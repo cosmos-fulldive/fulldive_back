@@ -17,10 +17,7 @@ public class StageStore implements StageStoreImpl{
 	@Inject
     SqlSession sqlSession;
 
-	@Override
-	public List<StageEntity> stageLiveList(Map<String, Object> params) {
-		return sqlSession.selectList(ReadOnlyMapper+"stageLiveList", params);
-	}
+
 
 	@Override
 	public int stageInsert(Map<String, Object> params) {
@@ -43,10 +40,20 @@ public class StageStore implements StageStoreImpl{
 	}
 
 	@Override
-	public List<StageEntity> stageBeforeDayList() {
-		return sqlSession.selectList(ReadOnlyMapper+"stageBeforeDayList");
+	public List<StageEntity> stageStartList(Map<String, Object> params) {
+		return sqlSession.selectList(ReadOnlyMapper+"stageStartList", params);
 	}
-	
+
+	@Override
+	public List<StageEntity> stageReadyList(Map<String, Object> params) {
+		return sqlSession.selectList(ReadOnlyMapper+"stageReadyList", params);
+	}
+
+	@Override
+	public List<StageEntity> stageExitList(Map<String, Object> params) {
+		return sqlSession.selectList(ReadOnlyMapper+"stageExitList", params);
+	}
+
 
 
 	

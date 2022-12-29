@@ -15,15 +15,6 @@ public class StageService implements StageServiceImpl {
 	@Autowired
     private StageStore stageStore;
 
-
-
-	@Override
-	public List<StageEntity> stageLiveList(Map<String, Object> params) {
-		return stageStore.stageLiveList(params);
-	}
-
-
-
 	@Override
 	public int stageInsert(Map<String, Object> params) {
 		return stageStore.stageInsert(params);
@@ -51,11 +42,22 @@ public class StageService implements StageServiceImpl {
 	}
 
 
+	@Override
+	public List<StageEntity> stageStartList(Map<String, Object> params) {
+		return stageStore.stageStartList(params);
+	}
 
 	@Override
-	public List<StageEntity> stageBeforeDayList() {
-		return stageStore.stageBeforeDayList();
+	public List<StageEntity> stageReadyList(Map<String, Object> params) {
+		return stageStore.stageReadyList(params);
 	}
+
+	@Override
+	public List<StageEntity> stageExitList(Map<String, Object> params) {
+		return stageStore.stageExitList(params);
+	}
+
+
 
 	
 

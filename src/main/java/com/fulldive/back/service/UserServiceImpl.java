@@ -14,4 +14,5 @@ public interface UserServiceImpl {
 	
 	int userUpdate(Map<String, Object> params);
 	int userDelete(Map<String, Object> params);
+	List<UserEntity> userInfo(Map<String, Object> params);
 }

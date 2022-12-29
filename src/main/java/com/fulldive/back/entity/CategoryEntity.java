@@ -14,5 +14,6 @@ public class CategoryEntity {
 	private String categoryId;
 	private String categoryNameKr;
 	private String categoryNameEn;
+	private Integer categorySequence;
 	private Timestamp createTimestamp;
 }

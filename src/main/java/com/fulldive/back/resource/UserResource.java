@@ -34,15 +34,13 @@ public class UserResource{
 	 * 유저정보, 코멧, 티켓
 	 */
 	@PostMapping(value = "/user/userInfo")
-	public Map<String, Object> findUserInfo(Map<String, Object> params) {
-		String userId = (String) params.get("userId");
-//		List<UserEntity> userInfo = userService.findByUserEmail(userId);
-		Map<String, Object> userInfo = new HashMap<>();
-		Map<String, Object> userInfoMap = new HashMap<>();
-		userInfo.put("userInfo",userInfoMap);
-		userInfo.put("userComet", 3000);
-		userInfo.put("userList", new ArrayList<>());
-		return userInfo;
+	public Map<String, Object> findUserInfo(@RequestBody Map<String, Object> params) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<UserEntity> userInfo = userService.userInfo(params);
+
+
+		result.put("userList", userInfo);
+		return result;
 	}
 
 	/*
