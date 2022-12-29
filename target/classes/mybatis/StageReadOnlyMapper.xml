@@ -5,16 +5,19 @@
 	
 	<resultMap type="com.fulldive.back.entity.StageEntity" id="stageSelectRM">
 		<result property="stageId" column="STAGE_ID"/>
-		<result property="stageMakeUserId" column="STAGE_MAKE_USER_ID"/>
+		<result property="userId" column="USER_ID"/>
 		<result property="stageTitle" column="STAGE_TITLE"/>
 		<result property="stageImage" column="STAGE_IMAGE"/>
 		<result property="stageLocation" column="STAGE_LOCATION"/>
 		<result property="stageTimestamp" column="STAGE_TIMESTAMP"/>
 		<result property="stageArtistId" column="STAGE_ARTIST_ID"/>
 		<result property="stageDescription" column="STAGE_DESCRIPTION"/>
-		<result property="stageThumbnailImage" column="STAGE_THUMBNAIL_IMGAE"/>
+		<result property="stageThumbnailImage" column="STAGE_THUMBNAIL_IMAGE"/>
 		<result property="stageTicketPrice" column="STAGE_TICKET_PRICE"/>
 		<result property="stageCurrent" column="STAGE_CURRENT"/>
+		<result property="stageTimeDifference" column="STAGE_TIME_DIFFERENCE"/>
+		<result property="stageCurrent" column="STAGE_CURRENT"/>
+		<result property="stageStreamKey" column="STAGE_STREAM_KEY"/>
 		<result property="stageTimeDifference" column="STAGE_TIME_DIFFERENCE"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
@@ -23,42 +26,45 @@
     <select id="stageLiveList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
         SELECT
 			STAGE_ID,
-			STAGE_MAKE_USER_ID,
-			STAGE_TITLE,
-			STAGE_IMAGE,
-			STAGE_LOCATION,
-			convert(varchar(19), STAGE_TIMESTAMP, 120) "STAGE_TIMESTAMP",
-			STAGE_ARTIST_ID,
-			STAGE_DESCRIPTION,
-			STAGE_THUMBNAIL_IMGAE,
-			STAGE_TICKET_PRICE,
-			STAGE_CURRENT,
-			CREATE_TIMESTAMP
+            CREATE_TIMESTAMP,
+            USER_ID,
+            STAGE_TITLE,
+            STAGE_IMAGE,
+            STAGE_LOCATION,
+			STAGE_TIMESTAMP,
+            STAGE_ARTIST_ID,
+            STAGE_DESCRIPTION,
+            STAGE_THUMBNAIL_IMAGE,
+            STAGE_TICKET_PRICE,
+            STAGE_CURRENT,
+            STAGE_STREAM_KEY
 		FROM
-			TB_MILKOMEDA_STAGE
+			TB_FULLDIVE_STAGE
 		WHERE 1=1
-			AND STAGE_CURRENT = 'B'
+			AND STAGE_CURRENT = 'S'
 		ORDER BY STAGE_TIMESTAMP DESC	
     </select>
     
     <select id="stageFindById" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
         SELECT
 			STAGE_ID,
-			STAGE_MAKE_USER_ID,
+			TO_CHAR(CREATE_TIMESTAMP, 'YYYY-MM-DD HH:MI:SS'),
+			USER_ID,
 			STAGE_TITLE,
 			STAGE_IMAGE,
 			STAGE_LOCATION,
-			STAGE_TIMESTAMP,
+			TO_CHAR(STAGE_TIMESTAMP, 'YYYY-MM-DD HH:MI:SS'),
 			STAGE_ARTIST_ID,
 			STAGE_DESCRIPTION,
-			STAGE_THUMBNAIL_IMGAE,
+			STAGE_THUMBNAIL_IMAGE,
 			STAGE_TICKET_PRICE,
-			CREATE_TIMESTAMP
+			STAGE_CURRENT,
+			STAGE_STREAM_KEY
 		FROM
-			TB_MILKOMEDA_STAGE
+			TB_FULLDIVE_STAGE
 		WHERE 1=1
 		
-		AND STAGE_ID = #{stageId, jdbcType=NVARCHAR}
+		AND STAGE_ID = #{stageId}
     </select>
     
     <select id="stageBeforeDayList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
@@ -68,7 +74,7 @@
 			STAGE_TITLE,
 			STAGE_IMAGE,
 			STAGE_LOCATION,
-			convert(varchar(19), STAGE_TIMESTAMP, 120) "STAGE_TIMESTAMP",
+			TO_CHAR(STAGE_TIMESTAMP, 'YYYY-MM-DD HH:MI:SS'),
 			STAGE_ARTIST_ID,
 			STAGE_DESCRIPTION,
 			STAGE_THUMBNAIL_IMGAE,
@@ -77,7 +83,7 @@
 			DATEDIFF(HOUR, getDate(), STAGE_TIMESTAMP) AS "STAGE_TIME_DIFFERENCE",
 			CREATE_TIMESTAMP
 		FROM 
-			TB_MILKOMEDA_STAGE 
+			TB_FULLDIVE_STAGE
 		WHERE 1=1
 			AND STAGE_TIMESTAMP <![CDATA[ < ]]>  getDate() + 1
 			AND STAGE_TIMESTAMP > getDate()

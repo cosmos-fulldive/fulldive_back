@@ -28,11 +28,11 @@
 			ARTIST_SNS_W,
 			CREATE_TIMESTAMP
 		FROM
-			TB_MILKOMEDA_ARTIST
+			TB_FULLDIVE_ARTIST
 		WHERE 1=1
 		
 		 <if test='userId != null'>
-			AND USER_ID = #{userId, jdbcType=NVARCHAR}
+			AND USER_ID = #{userId}
  		</if>
     </select>
     

@@ -25,6 +25,7 @@ public class UserStore implements UserStoreImpl{
 
 	@Override
 	public int userJoin(Map<String, Object> params) {
+		System.out.println("Store params"+params);
 		return sqlSession.insert(DMLMapper+"userJoin",params);
 	}
 

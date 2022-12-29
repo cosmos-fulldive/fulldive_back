@@ -20,5 +20,6 @@ public class StageEntity {
 	private String stageTicketPrice;
 	private String stageCurrent;
 	private String stageTimeDifference;
+	private String stageStreamKey;
 	private String createTimestamp;
 }

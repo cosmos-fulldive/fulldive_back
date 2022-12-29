@@ -4,34 +4,34 @@
 <mapper namespace="StageDMLMapper">
 	
 	<insert id="stageInsert" parameterType="Hashmap"> 
-        INSERT INTO TB_MILKOMEDA_STAGE
-        ( STAGE_ID, 
-        STAGE_MAKE_USER_ID, 
-        STAGE_TITLE, 
-        STAGE_DESCRIPTION,
+        INSERT INTO TB_FULLDIVE_STAGE
+        (
+        USER_ID,
+        STAGE_TITLE,
+        STAGE_IMAGE,
         STAGE_LOCATION,
         STAGE_TIMESTAMP,
 		STAGE_ARTIST_ID,
-		STAGE_THUMBNAIL_IMGAE,
-		STAGE_TICKET_PRICE,
-		STAGE_CURRENT
+        STAGE_DESCRIPTION,
+		STAGE_THUMBNAIL_IMAGE,
+		STAGE_TICKET_PRICE
         ) 
         VALUES 
-        ( #{stageId, jdbcType=NVARCHAR},
-          #{stageMakeUserId, jdbcType=NVARCHAR},
-          #{stageTitle, jdbcType=NVARCHAR},
-          #{stageDescription, jdbcType=NVARCHAR}, 
-          #{stageLocation, jdbcType=NVARCHAR},
-          #{stageTimestamp, jdbcType=NVARCHAR},
-          #{stageArtistId, jdbcType=NVARCHAR},
-          #{stageThumbnailImage, jdbcType=NVARCHAR},
-          #{stageTicketPrice, jdbcType=INTEGER},
-          #{stageCurrent, jdbcType=NVARCHAR}
-		) 
+        (
+          #{userId},
+          #{stageTitle},
+          #{stageImage},
+          #{stageLocation},
+          TO_TIMESTAMP(#{stageTimestamp}, 'YYYY-MM-DD HH24:MI:SS'),
+          #{stageArtistId},
+          #{stageDescription},
+          #{stageThumbnailImage},
+          #{stageTicketPrice, jdbcType=INTEGER}
+		)
     </insert>
     
     <update id="stageUpdate" parameterType="Hashmap">
-		UPDATE TB_MILKOMEDA_STAGE 	
+		UPDATE TB_FULLDIVE_STAGE
 		SET 
 		STAGE_ID=#{stageId},
         STAGE_MAKE_USER_ID=#{stageMakeUserId},
@@ -47,7 +47,7 @@
 	</update>
 	
 	<delete id="stageDelete" parameterType="Hashmap">
-		DELETE FROM TB_MILKOMEDA_STAGE
+		DELETE FROM TB_FULLDIVE_STAGE
 		WHERE STAGE_ID = #{stageId} and STAGE_MAKE_USER_ID=#{userId}
 	</delete>
 

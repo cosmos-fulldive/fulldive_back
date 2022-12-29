@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlserver://221.154.8.88:1433;database=mber;encrypt=true;trustServerCertificate=true;</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="postgres@cosmos" uuid="b57799de-6a92-41c6-abf2-20ad0200de4b">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://118.63.182.3:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

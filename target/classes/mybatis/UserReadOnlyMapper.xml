@@ -10,7 +10,7 @@
 		<result property="userChkEmail" column="USER_CHK_EMAIL"/>
 		<result property="userAccess" column="USER_ACCESS"/>
 		<result property="userNickname" column="USER_NICKNAME"/>
-		<result property="userAge" column="USER_AGE"/>
+		<result property="userBirth" column="USER_BIRTH"/>
 		<result property="userName" column="USER_NAME"/>
 		<result property="userPhone" column="USER_PHONE"/>
 		<result property="userProfileImage" column="USER_PROFILE_IMAGE"/>
@@ -22,26 +22,26 @@
 	
  
     <select id="userlogin" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.UserEntity" resultMap="userSelectRM">
-        SELECT
-        	USER_ID,
+		SELECT
+			USER_ID,
 			USER_EMAIL,
 			USER_PASSWORD,
 			USER_CHK_EMAIL,
 			USER_ACCESS,
 			USER_NICKNAME,
-			USER_AGE,
+			USER_BIRTH,
 			USER_NAME,
 			USER_PHONE,
 			USER_PROFILE_IMAGE,
 			USER_GENDER,
 			USER_NATION,
 			USER_ADDRESS,
-			convert(varchar(19), CREATE_TIMESTAMP , 120) "CREATE_TIMESTAMP"
+			CREATE_TIMESTAMP
 		FROM
-			TB_MILKOMEDA_USER
+			TB_FULLDIVE_USER
 		WHERE 1=1
 		<![CDATA[
-			AND USER_EMAIL = #{userEmail, jdbcType=NVARCHAR}
+			AND USER_EMAIL = #{userEmail}
 		]]>
     </select>
     
@@ -50,10 +50,10 @@
         SELECT
 			USER_EMAIL
 		FROM
-			TB_MILKOMEDA_USER
+			TB_FULLDIVE_USER
 		WHERE 1=1
 		<![CDATA[
-			AND USER_EMAIL = #{userEmail, jdbcType=NVARCHAR}
+			AND USER_EMAIL = #{userEmail}
 		]]>
     </select>
 </mapper>

@@ -29,6 +29,4 @@ public class StoreStore implements StoreStoreImpl{
 	public int storeDelete(Map<String, Object> params) {
 		return sqlSession.delete(DMLMapper+"storeDelete", params);
 	}
-	
-    }
 }

@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name="TB_MILKOMEDA_USER")
+@Entity(name="TB_FULLDIVE_USER")
 public class UserEntity {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +23,7 @@ public class UserEntity {
 	@Column
 	private String userNickname;
 	@Column
-	private String userAge;
+	private String userBirth;
 	@Column
 	private String userName;
 	@Column
@@ -38,6 +38,8 @@ public class UserEntity {
 	private String userNation;
 	@Column
 	private String userAddress;
+	@Column
+	private Integer userComet;
 	@Column
 	private String createTimestamp;
 }
