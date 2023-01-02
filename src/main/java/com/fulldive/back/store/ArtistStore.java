@@ -1,9 +1,11 @@
 package com.fulldive.back.store;
 
+import com.fulldive.back.entity.ArtistEntity;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -29,5 +31,8 @@ public class ArtistStore implements ArtistStoreImpl{
 	public int artistDelete(Map<String, Object> params) {
 		return sqlSession.delete(DMLMapper+"artistDelete", params);
 	}
+
+	@Override
+	public List<ArtistEntity> newArtistList() {return sqlSession.selectList(ReadOnlyMapper+"findArtist");}
 
 }

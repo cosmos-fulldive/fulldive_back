@@ -3,8 +3,25 @@
  
 <mapper namespace="ArtistReadOnlyMapper">
 	
-	<resultMap type="com.fulldive.back.entity.StageEntity" id="ArtistSelectRM">
+	<resultMap type="com.fulldive.back.entity.ArtistEntity" id="ArtistSelectRM">
 		<result property="userId" column="USER_ID"/>
+		<result property="userEmail" column="USER_EMAIL"/>
+		<result property="userPassword" column="USER_PASSWORD"/>
+		<result property="userChkEmail" column="USER_CHK_EMAIL"/>
+		<result property="userAccess" column="USER_ACCESS"/>
+		<result property="userNickname" column="USER_NICKNAME"/>
+		<result property="userBirth" column="USER_BIRTH"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="userPhone" column="USER_PHONE"/>
+		<result property="userProfileImage" column="USER_PROFILE_IMAGE"/>
+		<result property="userGender" column="USER_GENDER"/>
+		<result property="userNation" column="USER_NATION"/>
+		<result property="userAddress" column="USER_ADDRESS"/>
+		<result property="userComet" column="USER_COMET"/>
+		<result property="userTicketCount" column="USER_TICKET_COUNT"/>
+		<result property="userTicketECount" column="USER_TICKET_E_COUNT"/>
+		<result property="userTicketNCount" column="USER_TICKET_N_COUNT"/>
+		<result property="userTicketPCount" column="USER_TICKET_P_COUNT"/>
 		<result property="artistCategory" column="ARTIST_CATEGORY"/>
 		<result property="artistDescription" column="ARTIST_DESCRIPTION"/>
 		<result property="artistSnsI" column="ARTIST_SNS_I"/>
@@ -12,6 +29,12 @@
 		<result property="artistSnsT" column="ARTIST_SNS_T"/>
 		<result property="artistSnsY" column="ARTIST_SNS_Y"/>
 		<result property="artistSnsW" column="ARTIST_SNS_W"/>
+		<result property="categoryNameKr1" column="CATEGORY_NAME_KR1"/>
+		<result property="categoryNameKr2" column="CATEGORY_NAME_KR2"/>
+		<result property="categoryNameKr3" column="CATEGORY_NAME_KR3"/>
+		<result property="categoryNameEn1" column="CATEGORY_NAME_EN1"/>
+		<result property="categoryNameEn2" column="CATEGORY_NAME_EN2"/>
+		<result property="categoryNameEn3" column="CATEGORY_NAME_EN3"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
 	
@@ -35,6 +58,49 @@
 			AND USER_ID = #{userId}
  		</if>
     </select>
-    
+
+	<select id="findArtist" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.ArtistEntity" resultMap="ArtistSelectRM">
+		SELECT
+			TFU.USER_ID,
+			TFU.USER_EMAIL,
+			TFU.USER_CHK_EMAIL,
+			TFU.USER_PASSWORD,
+			TFU.USER_NICKNAME,
+			TFU.USER_BIRTH,
+			TFU.USER_NAME,
+			TFU.USER_ACCESS,
+			TFU.USER_PHONE,
+			TFU.USER_PROFILE_IMAGE,
+			TFU.USER_GENDER,
+			TFU.USER_NATION,
+			TFU.USER_ADDRESS,
+			TFU.CREATE_TIMESTAMP,
+			TFA.ARTIST_CATEGORY,
+			(SELECT CATEGORY_NAME_KR FROM TB_FULLDIVE_CATEGORY
+			 WHERE 1=1 AND CATEGORY_CODE = SPLIT_PART(TFA.ARTIST_CATEGORY, ',', 1)) AS CATEGORY_NAME_KR1,
+			(SELECT CATEGORY_NAME_KR FROM TB_FULLDIVE_CATEGORY
+			 WHERE 1=1 AND CATEGORY_CODE = SPLIT_PART(TFA.ARTIST_CATEGORY, ',', 2)) AS CATEGORY_NAME_KR2,
+			(SELECT CATEGORY_NAME_KR FROM TB_FULLDIVE_CATEGORY
+			 WHERE 1=1 AND CATEGORY_CODE = SPLIT_PART(TFA.ARTIST_CATEGORY, ',', 3)) AS CATEGORY_NAME_KR3,
+			(SELECT CATEGORY_NAME_EN FROM TB_FULLDIVE_CATEGORY
+			 WHERE 1=1 AND CATEGORY_CODE = SPLIT_PART(TFA.ARTIST_CATEGORY, ',', 1)) AS CATEGORY_NAME_EN1,
+			(SELECT CATEGORY_NAME_EN FROM TB_FULLDIVE_CATEGORY
+			 WHERE 1=1 AND CATEGORY_CODE = SPLIT_PART(TFA.ARTIST_CATEGORY, ',', 2)) AS CATEGORY_NAME_EN2,
+			(SELECT CATEGORY_NAME_EN FROM TB_FULLDIVE_CATEGORY
+			 WHERE 1=1 AND CATEGORY_CODE = SPLIT_PART(TFA.ARTIST_CATEGORY, ',', 3)) AS CATEGORY_NAME_EN3,
+			TFA.ARTIST_DESCRIPTION,
+			TFA.ARTIST_SNS_I,
+			TFA.ARTIST_SNS_F,
+			TFA.ARTIST_SNS_T,
+			TFA.ARTIST_SNS_Y,
+			TFA.ARTIST_SNS_W,
+			TFA.ARTIST_COMPANY
+		FROM
+			TB_FULLDIVE_USER TFU,
+			TB_FULLDIVE_ARTIST TFA
+		WHERE 1=1
+		  AND TFU.USER_ID = TFA.USER_ID
+		ORDER BY CREATE_TIMESTAMP DESC
+	</select>
     
 </mapper>

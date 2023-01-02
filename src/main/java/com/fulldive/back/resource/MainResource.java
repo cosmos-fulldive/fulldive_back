@@ -4,6 +4,7 @@ import com.fulldive.back.config.RandomConfig;
 import com.fulldive.back.config.SHA256;
 import com.fulldive.back.entity.StageEntity;
 import com.fulldive.back.entity.UserEntity;
+import com.fulldive.back.service.ArtistService;
 import com.fulldive.back.service.StageService;
 import com.fulldive.back.service.UserService;
 import io.jsonwebtoken.Header;
@@ -38,8 +39,8 @@ public class MainResource {
 	UserService userService;
 	@Autowired
 	StageService stageService;
-
-
+	@Autowired
+	ArtistService artistService;
 
 	/*
 	 * 메인페이지정보
@@ -59,7 +60,5 @@ public class MainResource {
 		result.put("stageExitInfo", stageExitInfo);
 		return result;
 	}
-
-	
 	
 }

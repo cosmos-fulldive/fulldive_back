@@ -1,9 +1,13 @@
 package com.fulldive.back.resource;
 
+import com.fulldive.back.entity.CategoryEntity;
+import com.fulldive.back.service.CategoryService;
+import com.fulldive.back.service.CategoryServiceImpl;
 import com.fulldive.back.service.StageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -13,6 +17,8 @@ public class CategoryResource{
 	
 	@Autowired
 	StageService stageService;
+	CategoryService categoryService;
+
 	
 
 	
@@ -53,6 +59,11 @@ public class CategoryResource{
 		System.out.println(resultList);
 		if(resultList == 0) {result = 400;}
 		return result;
+	}
+
+	@RequestMapping(value = "/category/findCategory")
+	public List<CategoryEntity> findCategory () {
+		return categoryService.findCategory();
 	}
 	
 	
