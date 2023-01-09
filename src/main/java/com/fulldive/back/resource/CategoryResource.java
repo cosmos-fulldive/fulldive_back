@@ -17,6 +17,7 @@ public class CategoryResource{
 	
 	@Autowired
 	StageService stageService;
+	@Autowired
 	CategoryService categoryService;
 
 	

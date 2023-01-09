@@ -10,8 +10,8 @@ import java.sql.Timestamp;
 @Setter
 @Data
 public class CategoryEntity {
-	private String userId;
 	private String categoryId;
+	private String categoryCode;
 	private String categoryNameKr;
 	private String categoryNameEn;
 	private Integer categorySequence;
