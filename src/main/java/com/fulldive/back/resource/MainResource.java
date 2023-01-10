@@ -51,7 +51,7 @@ public class MainResource {
 	 */
 	@RequestMapping(value = "/main/mainInfo")
 	public Map<String, Object> findUserInfo() throws Exception {
-		System.out.println("20230105:14:58");
+//		System.out.println("20230105:14:58");
 		Map<String, Object> params = new HashMap<>();
 		Map<String, Object> result = new HashMap<String, Object>();
 //		List<UserEntity> userInfo = userService.userInfo(params);
