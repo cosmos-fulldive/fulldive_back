@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.fulldive.back.FulldiveApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.769 s - in com.fulldive.back.FulldiveApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.737 s - in com.fulldive.back.FulldiveApplicationTests
