@@ -8,7 +8,11 @@
 #spring.mail.password='*zhtmahtm1014'
 #spring.mail.properties.mail.smtp.auth=true
 #spring.mail.properties.mail.smtp.starttls.enable=true
+#spring.profiles.active=local
 server.port=8080
+#message=hi local
+
+
 spring.mail.host=smtp.gmail.com
 spring.mail.port=587
 spring.mail.username='info@fulldive.live'

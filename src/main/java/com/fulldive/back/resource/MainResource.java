@@ -70,7 +70,7 @@ public class MainResource {
 
 	@RequestMapping(value = "/main/mailService")
 	public void sendMail(){
-		MailEntity mailEntity = new MailEntity();
-		mailService.sendMail(mailEntity);
+//		MailEntity mailEntity = new MailEntity();
+//		mailService.sendMail(mailEntity);
 	}
 }
