@@ -58,7 +58,7 @@
 			TB_FULLDIVE_USER
 		WHERE 1=1
 		<![CDATA[
-			AND USER_EMAIL = #{userEmail}
+		AND USER_EMAIL=#{user_email}
 		]]>
     </select>
 

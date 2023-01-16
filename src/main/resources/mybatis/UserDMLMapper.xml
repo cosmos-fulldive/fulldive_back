@@ -24,7 +24,7 @@
           #{userPassword},
           #{userEmail},
           #{userChkEmail},
-          #{userAcces},
+          #{userAccess},
           #{userNickname},
           #{userBirth},
           #{userName},

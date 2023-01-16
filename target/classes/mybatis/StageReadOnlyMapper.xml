@@ -21,7 +21,7 @@
 		<result property="stageTimeDifference" column="STAGE_TIME_DIFFERENCE"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
-	
+
 	<!-- 진행중인 스테이지 4개 -->
     <select id="stageStartList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
 		-- 다가오는 스테이지 목록 (4개)
@@ -66,12 +66,12 @@
 			STAGE_THUMBNAIL_IMAGE,
 			STAGE_TICKET_PRICE,
 			STAGE_CURRENT,
+			STAGE_COMBINE_ID,
 			STAGE_STREAM_KEY
 		FROM
 			TB_FULLDIVE_STAGE
 		WHERE 1=1
-		
-		AND STAGE_ID = #{stageId}
+		AND STAGE_STREAM_KEY = #{stageStreamKey}
     </select>
     
     <select id="stageReadyList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">

@@ -73,7 +73,7 @@ public class StageResource{
 	public Map<String, Object> userLogin(@RequestBody Map<String, Object> params) throws Exception {
 		Map<String, Object> result = new HashMap<String, Object>(); 
 
-		List<StageEntity> stageLiveList = stageService.stageStartList(params);
+		List<StageEntity> stageLiveList = stageService.stageFindById(params);
 		List<Map<String, Object>> resultList = new ArrayList<>();
 
 		for(StageEntity x : stageLiveList) {

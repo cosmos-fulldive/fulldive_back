@@ -137,8 +137,8 @@ public class UserResource{
 		System.out.println("params: " + params);
 		int idChk = this.userJoinIdChk(params);
 		if(idChk == 200) {
-			String generatedString = randomConfig.getRandom();
-			params.put("userId", generatedString);
+//			String generatedString = randomConfig.getRandom();
+//			params.put("userId", generatedString);
 			int result = userService.userJoin(params);
 			return result;
 		}else {
