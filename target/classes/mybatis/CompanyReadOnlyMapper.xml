@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="CompanyReadOnlyMapper">
+		
+	<resultMap type="com.fulldive.back.entity.UserEntity" id="userSelectRM">
+		<result property="userId" column="USER_ID"/>
+		<result property="userEmail" column="USER_EMAIL"/>
+		<result property="userPassword" column="USER_PASSWORD"/>
+		<result property="userChkEmail" column="USER_CHK_EMAIL"/>
+		<result property="userAccess" column="USER_ACCESS"/>
+		<result property="userNickname" column="USER_NICKNAME"/>
+		<result property="userBirth" column="USER_BIRTH"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="userPhone" column="USER_PHONE"/>
+		<result property="userProfileImage" column="USER_PROFILE_IMAGE"/>
+		<result property="userGender" column="USER_GENDER"/>
+		<result property="userNation" column="USER_NATION"/>
+		<result property="userAddress" column="USER_ADDRESS"/>
+<!--		<result property="userComet" column="USER_COMET"/>-->
+<!--		<result property="userTicketCount" column="USER_TICKET_COUNT"/>-->
+<!--		<result property="userTicketECount" column="USER_TICKET_E_COUNT"/>-->
+<!--		<result property="userTicketNCount" column="USER_TICKET_N_COUNT"/>-->
+<!--		<result property="userTicketPCount" column="USER_TICKET_P_COUNT"/>-->
+		<result property="companyId" column="COMPANY_ID"/>
+		<result property="companyCategoryCode" column="COMPANY_CATEGORY_CODE"/>
+		<result property="companyRegisterNumber" column="COMPANY_REGISTER_NUMBER"/>
+		<result property="companyNation" column="COMPANY_NATION"/>
+		<result property="companyCity" column="COMPANY_CITY"/>
+		<result property="companyAddressDetail" column="COMPANY_ADDRESS_DETAIL"/>
+		<result property="companyBusiness" column="COMPANY_BUSINESS"/>
+		<result property="companySector" column="COMPANY_SECTOR"/>
+		<result property="companyRegisterPhone" column="COMPANY_REGISTER_PHONE"/>
+		<result property="companyRegisterCellularPhone" column="COMPANY_REGISTER_CELLULAR_PHONE"/>
+
+		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
+	</resultMap>
+
+    <select id="findByCompany" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.CompanyEntity" resultMap="userSelectRM">
+		SELECT
+			TFU.*, TFC.*
+		FROM
+			TB_FULLDIVE_USER TFU,
+			TB_FULLDIVE_COMPANY TFC
+		WHERE
+			1=1
+		  AND TFU.USER_ID = TFC.USER_ID
+		  AND TFU.USER_ACCESS = 'P'
+		<![CDATA[
+		  AND TFU.USER_NAME =#{user_email}
+		]]>
+    </select>
+
+</mapper>

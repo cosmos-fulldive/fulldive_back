@@ -13,6 +13,7 @@ com/fulldive/back/store/FollowStore.class
 com/fulldive/back/store/StageStore.class
 com/fulldive/back/entity/FollowEntity.class
 com/fulldive/back/store/PaymentStore.class
+com/fulldive/back/store/CompanyStoreImpl.class
 com/fulldive/back/resource/StoreResource.class
 com/fulldive/back/entity/StoreEntity.class
 com/fulldive/back/service/StageServiceImpl.class
@@ -25,6 +26,7 @@ com/fulldive/back/store/CategoryStore.class
 com/fulldive/back/resource/ArtistResource.class
 com/fulldive/back/service/FollowServiceImpl.class
 com/fulldive/back/service/MailServiceImpl.class
+com/fulldive/back/service/CompanyServiceImpl.class
 com/fulldive/back/service/PaymentServiceImpl.class
 com/fulldive/back/store/UserStore.class
 com/fulldive/back/FulldiveApplication.class
@@ -36,6 +38,7 @@ com/fulldive/back/resource/CategoryResource.class
 com/fulldive/back/service/CategoryService.class
 com/fulldive/back/store/StageStoreImpl.class
 com/fulldive/back/store/PaymentStoreImpl.class
+com/fulldive/back/store/CompanyStore.class
 com/fulldive/back/store/StoreStoreImpl.class
 com/fulldive/back/service/UserServiceImpl.class
 com/fulldive/back/service/FollowService.class

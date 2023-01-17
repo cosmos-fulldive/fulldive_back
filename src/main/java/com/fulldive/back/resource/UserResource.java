@@ -201,7 +201,19 @@ public class UserResource{
 	        .claim("email", "ajufresh@gmail.com")
 			.signWith(key, SignatureAlgorithm.HS256)
 			.compact();
-	  }
+	}
+
+	/*
+	 * 소속사 검색
+	 */
+	@PostMapping(value = "/user/findByCompany")
+	public Map<String, Object> findByCompany(@RequestBody Map<String, Object> params) {
+		Map<String, Object> result = new HashMap<>();
+		result.put("result",200);
+
+		return result;
+	}
+
 	
 	
 	
