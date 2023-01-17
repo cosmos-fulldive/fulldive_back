@@ -106,7 +106,8 @@ public class UserResource{
 				System.out.println("DATA EXSIST");
 				result.put("responses", 200);
 				result.put("jwt", "Test");
-				if(userList.get(0).getUserEmail().equals(params.get("admin@milkomeda.com"))) {
+				System.out.println("USER EMAIL:" + userList.get(0).getUserEmail());
+				if(userList.get(0).getUserEmail().equals("admin@milkomeda.com")) {
 					result.put("admin", "1");
 				}else {
 					result.put("admin", "2");
