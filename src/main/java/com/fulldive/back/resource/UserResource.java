@@ -106,7 +106,12 @@ public class UserResource{
 				System.out.println("DATA EXSIST");
 				result.put("responses", 200);
 				result.put("jwt", "Test");
-				result.put("admin", "1");
+				if(userList.get(0).getUserEmail().equals(params.get("admin@milkomeda.com"))) {
+					result.put("admin", "1");
+				}else {
+					result.put("admin", "2");
+				}
+
 				result.put("userInfo", userList);
 			}else {
 				throw new Exception("비밀번호를 확인해 주시기 바랍니다.");
