@@ -12,4 +12,7 @@ public interface ArtistServiceImpl {
 	int artistDelete(Map<String, Object> params);
 
 	List<ArtistEntity> newFindArtist();
+	List<ArtistEntity> findAllPopularityArtistList();
+	List<ArtistEntity> findAllCreateArtistList();
+	List<ArtistEntity> findAllNameArtistList();
 }

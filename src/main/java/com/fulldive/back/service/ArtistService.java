@@ -37,5 +37,20 @@ public class ArtistService implements ArtistServiceImpl {
 	@Override
 	public List<ArtistEntity> newFindArtist() {return artistStore.newArtistList();}
 
+	@Override
+	public List<ArtistEntity> findAllPopularityArtistList() {
+		return artistStore.findAllPopularityArtistList();
+	}
+
+	@Override
+	public List<ArtistEntity> findAllCreateArtistList() {
+		return artistStore.findAllCreateArtistList();
+	}
+
+	@Override
+	public List<ArtistEntity> findAllNameArtistList() {
+		return artistStore.findAllNameArtistList();
+	}
+
 
 }

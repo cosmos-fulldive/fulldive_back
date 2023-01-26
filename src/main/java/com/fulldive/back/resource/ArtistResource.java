@@ -17,9 +17,7 @@ public class ArtistResource{
 	
 	@Autowired
 	ArtistService artistService;
-	
 
-	
 	/*
 	 * 아티스트 정보등록
 	*/
@@ -74,6 +72,33 @@ public class ArtistResource{
 			x.setCategoryNameEn(categoryNameEn);
 		}
 		result.put("newArtistList", newArtistList);
+		return result;
+	}
+
+	/*
+	아티스트 정렬 인기순
+	*/
+	@RequestMapping(value = "/artist/findAllPopularityArtistList")
+	public Map<String, Object> findAllArtistList() {
+		Map<String, Object> result = new HashMap<>();
+		List<ArtistEntity> popularityArtistList = artistService.findAllPopularityArtistList();
+		result.put("artistList",popularityArtistList);
+		return result;
+	}
+
+	@RequestMapping(value = "/artist/findAllCreateArtistList")
+	public Map<String, Object> findAllCreateArtistList() {
+		Map<String, Object> result = new HashMap<>();
+		List<ArtistEntity> createArtistList = artistService.findAllCreateArtistList();
+		result.put("artistList",createArtistList);
+		return result;
+	}
+
+	@RequestMapping(value = "/artist/findAllNameArtistList")
+	public Map<String, Object> findAllNameArtistList() {
+		Map<String, Object> result = new HashMap<>();
+		List<ArtistEntity> nameArtistList = artistService.findAllNameArtistList();
+		result.put("artistList",nameArtistList);
 		return result;
 	}
 	

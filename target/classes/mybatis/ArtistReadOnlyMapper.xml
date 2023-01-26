@@ -2,26 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="ArtistReadOnlyMapper">
-	
+<!--	ARTIST_NAME-->
+<!--	, ARTIST_EMAIL-->
+<!--	, ARTIST_BIRTH-->
+<!--	, ARTIST_GENDER-->
+<!--	, ARTIST_MEMBER-->
+<!--	, ARTIST_PHONE-->
+<!--	, ARTIST_NATION-->
+<!--	, ARTIST_ACCEPT-->
 	<resultMap type="com.fulldive.back.entity.ArtistEntity" id="ArtistSelectRM">
-		<result property="userId" column="USER_ID"/>
-		<result property="userEmail" column="USER_EMAIL"/>
-		<result property="userPassword" column="USER_PASSWORD"/>
-		<result property="userChkEmail" column="USER_CHK_EMAIL"/>
-		<result property="userAccess" column="USER_ACCESS"/>
-		<result property="userNickname" column="USER_NICKNAME"/>
-		<result property="userBirth" column="USER_BIRTH"/>
-		<result property="userName" column="USER_NAME"/>
-		<result property="userPhone" column="USER_PHONE"/>
-		<result property="userProfileImage" column="USER_PROFILE_IMAGE"/>
-		<result property="userGender" column="USER_GENDER"/>
-		<result property="userNation" column="USER_NATION"/>
-		<result property="userAddress" column="USER_ADDRESS"/>
-		<result property="userComet" column="USER_COMET"/>
-		<result property="userTicketCount" column="USER_TICKET_COUNT"/>
-		<result property="userTicketECount" column="USER_TICKET_E_COUNT"/>
-		<result property="userTicketNCount" column="USER_TICKET_N_COUNT"/>
-		<result property="userTicketPCount" column="USER_TICKET_P_COUNT"/>
+		<result property="artistId" column="ARTIST_ID"/>
+		<result property="artistName" column="ARTIST_NAME"/>
+		<result property="artistEmail" column="ARTIST_EMAIL"/>
+		<result property="artistBirth" column="ARTIST_BIRTH"/>
+		<result property="artistGender" column="ARTIST_GENDER"/>
+		<result property="artistMember" column="ARTIST_MEMBER"/>
+		<result property="artistPhone" column="ARTIST_PHONE"/>
+		<result property="artistNation" column="ARTIST_NATION"/>
+		<result property="artistAccept" column="ARTIST_ACCEPT"/>
 		<result property="artistCategory" column="ARTIST_CATEGORY"/>
 		<result property="artistDescription" column="ARTIST_DESCRIPTION"/>
 		<result property="artistSnsI" column="ARTIST_SNS_I"/>
@@ -102,5 +100,87 @@
 		  AND TFU.USER_ID = TFA.USER_ID
 		ORDER BY CREATE_TIMESTAMP DESC
 	</select>
-    
+
+	<select id="findAllPopularityArtistList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.ArtistEntity" resultMap="ArtistSelectRM">
+		SELECT
+			*
+		FROM (SELECT ARTIST_ID
+				   , ARTIST_CATEGORY
+				   , ARTIST_DESCRIPTION
+				   , ARTIST_SNS_I
+				   , ARTIST_SNS_F
+				   , ARTIST_SNS_T
+				   , ARTIST_SNS_Y
+				   , ARTIST_SNS_W
+				   , CREATE_TIMESTAMP
+				   , ARTIST_COMPANY
+				   , ARTIST_APPROVAL
+				   , ARTIST_NAME
+				   , ARTIST_EMAIL
+				   , ARTIST_BIRTH
+				   , ARTIST_GENDER
+				   , ARTIST_MEMBER
+				   , ARTIST_PHONE
+				   , ARTIST_NATION
+				   , ARTIST_ACCEPT
+				   , CASE WHEN FOLLOW_COUNT IS NULL THEN 0 ELSE FOLLOW_COUNT END AS FOLLOW_COUNT
+			  FROM TB_FULLDIVE_ARTIST TFA
+					   FULL OUTER JOIN
+				   (SELECT FOLLOW_ARTIST_ID, COUNT(FOLLOW_USER_ID) AS FOLLOW_COUNT
+					FROM TB_FULLDIVE_FOLLOW
+					GROUP BY FOLLOW_ARTIST_ID) TFAC
+				   ON TFA.ARTIST_ID = TFAC.FOLLOW_ARTIST_ID
+			 ) TFACF
+		ORDER BY TFACF.FOLLOW_COUNT DESC, TFACF.CREATE_TIMESTAMP DESC
+	</select>
+
+	<select id="findAllCreateArtistList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.ArtistEntity" resultMap="ArtistSelectRM">
+		SELECT
+			ARTIST_ID
+			 , ARTIST_CATEGORY
+			 , ARTIST_DESCRIPTION
+			 , ARTIST_SNS_I
+			 , ARTIST_SNS_F
+			 , ARTIST_SNS_T
+			 , ARTIST_SNS_Y
+			 , ARTIST_SNS_W
+			 , CREATE_TIMESTAMP
+			 , ARTIST_COMPANY
+			 , ARTIST_APPROVAL
+			 , ARTIST_NAME
+			 , ARTIST_EMAIL
+			 , ARTIST_BIRTH
+			 , ARTIST_GENDER
+			 , ARTIST_MEMBER
+			 , ARTIST_PHONE
+			 , ARTIST_NATION
+			 , ARTIST_ACCEPT
+		FROM TB_FULLDIVE_ARTIST
+		ORDER BY CREATE_TIMESTAMP DESC
+	</select>
+
+	<select id="findAllNameArtistList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.ArtistEntity" resultMap="ArtistSelectRM">
+		SELECT
+			ARTIST_ID
+			 , ARTIST_CATEGORY
+			 , ARTIST_DESCRIPTION
+			 , ARTIST_SNS_I
+			 , ARTIST_SNS_F
+			 , ARTIST_SNS_T
+			 , ARTIST_SNS_Y
+			 , ARTIST_SNS_W
+			 , CREATE_TIMESTAMP
+			 , ARTIST_COMPANY
+			 , ARTIST_APPROVAL
+			 , ARTIST_NAME
+			 , ARTIST_EMAIL
+			 , ARTIST_BIRTH
+			 , ARTIST_GENDER
+			 , ARTIST_MEMBER
+			 , ARTIST_PHONE
+			 , ARTIST_NATION
+			 , ARTIST_ACCEPT
+		FROM TB_FULLDIVE_ARTIST
+		ORDER BY ARTIST_NAME DESC
+	</select>
 </mapper>

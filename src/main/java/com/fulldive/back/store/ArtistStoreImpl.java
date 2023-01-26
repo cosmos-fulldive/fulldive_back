@@ -12,5 +12,8 @@ public interface ArtistStoreImpl {
 	int artistDelete(Map<String, Object> params);
 
 	List<ArtistEntity> newArtistList();
+	List<ArtistEntity> findAllPopularityArtistList();
+	List<ArtistEntity> findAllCreateArtistList();
+	List<ArtistEntity> findAllNameArtistList();
 	
 }

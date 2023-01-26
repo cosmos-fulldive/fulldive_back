@@ -35,4 +35,19 @@ public class ArtistStore implements ArtistStoreImpl{
 	@Override
 	public List<ArtistEntity> newArtistList() {return sqlSession.selectList(ReadOnlyMapper+"findArtist");}
 
+	@Override
+	public List<ArtistEntity> findAllPopularityArtistList() {
+		return sqlSession.selectList(ReadOnlyMapper + "findAllPopularityArtistList");
+	}
+
+	@Override
+	public List<ArtistEntity> findAllCreateArtistList() {
+		return sqlSession.selectList(ReadOnlyMapper + "findAllCreateArtistList");
+	}
+
+	@Override
+	public List<ArtistEntity> findAllNameArtistList() {
+		return sqlSession.selectList(ReadOnlyMapper + "findAllNameArtistList");
+	}
+
 }

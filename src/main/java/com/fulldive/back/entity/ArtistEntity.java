@@ -11,24 +11,15 @@ import java.sql.Timestamp;
 @Setter
 @Data
 public class ArtistEntity {
-	private String userId;
-	private String userEmail;
-	private String userPassword;
-	private String userChkEmail;
-	private String userNickname;
-	private String userBirth;
-	private String userName;
-	private String userAccess;
-	private String userPhone;
-	private String userProfileImage;
-	private String userGender;
-	private String userNation;
-	private String userAddress;
-	private Integer userComet;
-	private Integer userTicketCount;
-	private Integer userTicketECount;
-	private Integer userTicketNCount;
-	private Integer userTicketPCount;
+	private String artistId;
+	private String artistName;
+	private String artistEmail;
+	private String artistBirth;
+	private String artistGender;
+	private String artistMember;
+	private String artistPhone;
+	private String artistNation;
+	private String artistAccept;
 	private String artistCategory;
 	private String artistDescription;
 	private String artistSnsI;
@@ -36,7 +27,6 @@ public class ArtistEntity {
 	private String artistSnsT;
 	private String artistSnsY;
 	private String artistSnsW;
-	private String artist;
 	private String categoryNameKr;
 	private String categoryNameKr1;
 	private String categoryNameKr2;
