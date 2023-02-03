@@ -56,5 +56,10 @@ public class UserService implements UserServiceImpl {
 		return userStore.userInfo(params);
 	}
 
+	@Override
+	public List<UserEntity> findExistUser(Map<String, Object> params) {
+		return userStore.findExistUser(params);
+	}
+
 
 }

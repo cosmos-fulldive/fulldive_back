@@ -220,7 +220,18 @@ public class UserResource{
 		return result;
 	}
 
-	
+	@PostMapping(value = "/user/findExistUser")
+	public Map<String, Object> findExistUser(@RequestBody Map<String, Object> params) {
+		Map<String, Object> result =  new HashMap<>();
+		List<UserEntity> existUser = userService.findExistUser(params);
+		int userCount = existUser.size();
+		if(userCount != 0){
+			result.put("result",200);
+		}else {
+			result.put("result",400);
+		}
+		return result;
+	}
 	
 	
 }

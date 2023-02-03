@@ -1,9 +1,11 @@
 package com.fulldive.back.store;
 
+import com.fulldive.back.entity.FollowEntity;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -28,6 +30,11 @@ public class FollowStore implements FollowStoreImpl{
 	@Override
 	public int followDelete(Map<String, Object> params) {
 		return sqlSession.delete(DMLMapper+"followDelete", params);
+	}
+
+	@Override
+	public List<FollowEntity> findFollowArtistUser(Map<String, Object> params) {
+		return sqlSession.selectList(ReadOnlyMapper + "findFollowArtistUser", params);
 	}
 
 }

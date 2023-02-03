@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
-<mapper namespace="FollowDMLMapper">
 
+<!--팔로우-->
+<mapper namespace="FollowDMLMapper">
+    <insert id="followInsert" parameterType="Hashmap">
+        INSERT INTO TB_FULLDIVE_FOLLOW
+        (
+            FOLLOW_ARTIST_ID,
+            FOLLOW_USER_ID
+        )
+        VALUES
+        (
+            #{followArtistId},
+            #{followUserId}
+        )
+    </insert>
+
+    <delete id="followDelete" parameterType="Hashmap">
+        DELETE FROM TB_FULLDIVE_FOLLOW
+        WHERE FOLLOW_ARTIST_ID=#{followArtistId} AND FOLLOW_USER_ID=#{followUserId}
+    </delete>
 </mapper>

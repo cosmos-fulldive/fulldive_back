@@ -10,5 +10,15 @@
 		<result property="followTimestamp" column="FOLLOW_TIMESTAMP"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
+
+	<select id="findFollowArtistUser" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.FollowEntity" resultMap="FollowSelectRM">
+	    SELECT
+			FOLLOW_ID,
+	        FOLLOW_ARTIST_ID,
+	        FOLLOW_USER_ID,
+	        CREATE_TIMESTAMP
+		FROM TB_FULLDIVE_FOLLOW
+		WHERE FOLLOW_USER_ID = #{followUserId} AND FOLLOW_ARTIST_ID = #{followArtistId}
+	</select>
     
 </mapper>

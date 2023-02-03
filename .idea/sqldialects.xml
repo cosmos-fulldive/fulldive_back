@@ -4,6 +4,8 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/mybatis/ArtistReadOnlyMapper.xml" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mybatis/CategoryReadOnlyMapper.xml" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mybatis/CompanyReadOnlyMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mybatis/FollowDMLMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mybatis/FollowReadOnlyMapper.xml" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mybatis/StageDMLMapper.xml" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mybatis/StageReadOnlyMapper.xml" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mybatis/UserDMLMapper.xml" dialect="GenericSQL" />

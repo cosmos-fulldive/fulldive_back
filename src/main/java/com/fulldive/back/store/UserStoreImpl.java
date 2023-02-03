@@ -16,4 +16,5 @@ public interface UserStoreImpl {
 	int userDelete(Map<String, Object> params);
 
 	List<UserEntity> userInfo(Map<String, Object> params);
+	List<UserEntity> findExistUser(Map<String, Object> params);
 }

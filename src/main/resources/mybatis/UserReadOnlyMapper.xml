@@ -134,6 +134,9 @@
 		AND TFU.USER_EMAIL = #{userEmail}
 	</select>
 
+	<select id="findExistUser" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.UserEntity" resultMap="userSelectRM">
+		SELECT USER_ID FROM TB_FULLDIVE_USER WHERE USER_ID = #{userId}
+	</select>
 
 
 

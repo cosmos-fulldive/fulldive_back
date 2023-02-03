@@ -50,4 +50,9 @@ public class UserStore implements UserStoreImpl{
 		return sqlSession.selectList(ReadOnlyMapper+"userInfo", params);
 	}
 
+	@Override
+	public List<UserEntity> findExistUser(Map<String, Object> params) {
+		return sqlSession.selectList(ReadOnlyMapper + "findExistUser", params);
+	}
+
 }
