@@ -6,44 +6,59 @@
 	<insert id="stageInsert" parameterType="Hashmap"> 
         INSERT INTO TB_FULLDIVE_STAGE
         (
-        USER_ID,
-        STAGE_TITLE,
-        STAGE_IMAGE,
-        STAGE_LOCATION,
-        STAGE_TIMESTAMP,
-		STAGE_ARTIST_ID,
-        STAGE_DESCRIPTION,
-		STAGE_THUMBNAIL_IMAGE,
-		STAGE_TICKET_PRICE
+            USER_ID,
+            STAGE_TITLE,
+            STAGE_IMAGE,
+            STAGE_LOCATION,
+            STAGE_TIMESTAMP,
+            STAGE_ARTIST_ID,
+            STAGE_DESCRIPTION,
+            STAGE_THUMBNAIL_IMAGE,
+            STAGE_CURRENT,
+            STAGE_STREAM_KEY,
+            STAGE_COMBINE_ID,
+            STAGE_CATEGORY_ID,
+            STAGE_TICKET_ID,
+            STAGE_ADULT_TYPE,
+            STAEG_STUDIO_TYPE
         ) 
         VALUES 
         (
-          #{userId},
-          #{stageTitle},
-          #{stageImage},
-          #{stageLocation},
-          TO_TIMESTAMP(#{stageTimestamp}, 'YYYY-MM-DD HH24:MI:SS'),
-          #{stageArtistId},
-          #{stageDescription},
-          #{stageThumbnailImage},
-          #{stageTicketPrice, jdbcType=INTEGER}
+            #{userId}, --공연기획사
+            #{stageTitle}, --공연제목
+            #{stageImage}, --공연이미지
+            #{stageLocation}, --공연장소
+            #{stageTimestamp}, --공연시간
+            #{stageArtistId}, --참여아티스트
+            #{stageDescription}, --공연설명
+            #{stageThumbnailImage},
+            #{stageCurrent},
+            #{stageStreamKey},
+            #{stageCombineId},
+            #{stageCategoryId},
+            #{stageTicketId},
+            #{stageAdultType},
+            #{stageStudioType}
 		)
     </insert>
     
     <update id="stageUpdate" parameterType="Hashmap">
 		UPDATE TB_FULLDIVE_STAGE
-		SET 
-		STAGE_ID=#{stageId},
-        STAGE_MAKE_USER_ID=#{stageMakeUserId},
-        STAGE_TITLE=#{stageTitle},
-        STAGE_DESCRIPTION=#{stageDescription},
-        STAGE_LOCATION=#{stageLocation},
-        STAGE_TIMESTAMP=#{stageTimestamp},
-		STAGE_ARTIST_ID=#{stageArtistId},
-		STAGE_THUMBNAIL_IMGAE=#{stageThumbnail},
-		STAGE_TICKET_PRICE=#{stageTicketPrice},
-		STAGE_CURRENT=#{stageCurrent}
-		WHERE STAGE_ID = #{stageId} and STAGE_MAKE_USER_ID=#{userId}
+		SET
+        STAGE_TITLE=#{stageTitle}, --공연제목
+        STAGE_IMAGE=#{stageImage}, --공연이미지
+        STAGE_LOCATION#{stageLocation}, --공연장소
+        STAGE_TIMESTAMP=#{stageTimestamp}, --공연시간
+        STAGE_ARTIST_ID=#{stageArtistId}, --참여아티스트
+        STAGE_DESCRIPTION=#{stageDescription}, --공연설명
+        STAGE_THUMBNAIL_IMAGE=#{stageThumbnailImage},
+        STAGE_CURRENT=#{stageCurrent},
+        STAGE_COMBINE_ID=#{stageCombineId},
+        STAGE_CATEGORY_ID=#{stageCategoryId},
+        STAGE_TICKET_ID=#{stageTicketId},
+        STAGE_ADULT_TYPE=#{stageAdultType},
+        STAGE_STUDIO_TYPE=#{stageStudioType}
+		WHERE STAGE_ID = #{stageId}
 	</update>
 	
 	<delete id="stageDelete" parameterType="Hashmap">
