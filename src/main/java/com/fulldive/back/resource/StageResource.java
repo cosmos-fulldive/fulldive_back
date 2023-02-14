@@ -178,7 +178,10 @@ public class StageResource{
 	}
 
 	@PostMapping(value = "stage/stageImageInsert")
-	public void stageImageInsert(MultipartHttpServletRequest request) {
+	public Map<String, Object> stageImageInsert(MultipartHttpServletRequest request) {
+		Map<String, Object> map = new Hash<>();
 		System.out.println("request: " + request);
+		map.put("result", request);
+		return map;
 	}
 }
