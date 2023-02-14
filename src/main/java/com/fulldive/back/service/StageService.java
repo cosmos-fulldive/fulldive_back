@@ -57,8 +57,9 @@ public class StageService implements StageServiceImpl {
 		return stageStore.stageExitList(params);
 	}
 
-
-
-	
+	@Override
+	public int changeStageState(Map<String, Object> params) {
+		return stageStore.changeStageStage(params);
+	}
 
 }

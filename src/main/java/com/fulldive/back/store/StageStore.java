@@ -54,7 +54,10 @@ public class StageStore implements StageStoreImpl{
 		return sqlSession.selectList(ReadOnlyMapper+"stageExitList", params);
 	}
 
+	@Override
+	public int changeStageStage(Map<String, Object> params) {
+		return sqlSession.update(DMLMapper+"changeStageStage", params);
+	}
 
 
-	
 }

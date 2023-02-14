@@ -148,6 +148,33 @@ public class StageResource{
 //		stageBeforeDayList = stageService.stageReadyList();
 //		return stageBeforeDayList;
 //	}
-	
+
+	/*
+	 * 스테이지 상태변경
+ 	*/
+	@PostMapping(value = "/stage/changeStageState")
+	public Map<String, Object> changeStageStage(@RequestBody Map<String, Object> params) {
+
+		Map<String, Object> result = new HashMap<>();
+
+		String stageId = (String) params.get("stageId");
+		if(stageId.isEmpty()) {
+			result.put("result",400);
+			result.put("message","fail");
+			return result;
+		}
+
+		int changeStageStageResult = stageService.changeStageState(params);
+		if(changeStageStageResult != 0) {
+			result.put("result",200);
+			result.put("message","success");
+
+		}else {
+			result.put("result",400);
+			result.put("message","fail");
+		}
+		return result;
+	}
+
 	
 }

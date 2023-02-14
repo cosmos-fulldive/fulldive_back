@@ -13,7 +13,7 @@ import java.util.Map;
 
 
 @Service
-public class CometService implements CometServiceImpl {
+public  class CometService implements CometServiceImpl {
 	
 	@Autowired
     private CometStore cometStore;
@@ -25,19 +25,8 @@ public class CometService implements CometServiceImpl {
 	}
 
 	@Override
-	public int categoryUpdate(Map<String, Object> params) {
-		return 0;
+	public int cometUpdate(Map<String, Object> params) {
+		return cometStore.cometUpdate(params);
 	}
-
-	@Override
-	public int categoryDelete(Map<String, Object> params) {
-		return 0;
-	}
-
-	@Override
-	public List<CategoryEntity> findComet() {
-		return null;
-	}
-
 
 }

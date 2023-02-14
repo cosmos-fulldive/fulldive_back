@@ -15,4 +15,6 @@ public interface StageServiceImpl {
 	List<StageEntity> stageStartList(Map<String, Object> params);
 	List<StageEntity> stageReadyList(Map<String, Object> params);
 	List<StageEntity> stageExitList(Map<String, Object> params);
+
+	int changeStageState(Map<String, Object> params);
 }

@@ -21,19 +21,11 @@ public class CometStore implements CometStoreImpl{
 	public int cometInsert(Map<String, Object> params) {
 		return sqlSession.insert(DMLMapper+"cometInsert", params);
 	}
-//
-//	@Override
-//	public int categoryUpdate(Map<String, Object> params) {
-//		return sqlSession.update(DMLMapper+"categoryUpdate", params);
-//	}
-//
-//	@Override
-//	public int categoryDelete(Map<String, Object> params) {
-//		return sqlSession.delete(DMLMapper+"categoryDelete", params);
-//	}
 
-//	@Override
-//	public List<CompanyEntity> findByCompany() {return sqlSession.selectList(ReadOnlyMapper + "findByCompany");}
+	@Override
+	public int cometUpdate(Map<String, Object> params) {
+		return sqlSession.update(DMLMapper+"cometUpdate", params);
+	}
 
 
 }

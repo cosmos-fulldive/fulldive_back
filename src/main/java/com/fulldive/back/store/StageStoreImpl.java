@@ -16,4 +16,6 @@ public interface StageStoreImpl {
 	List<StageEntity> stageReadyList(Map<String, Object> params);
 	List<StageEntity> stageExitList(Map<String, Object> params);
 
+	int changeStageStage(Map<String, Object> params);
+
 }

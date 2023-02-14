@@ -2,22 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="CometDMLMapper">
-    <insert id="insertComet" parameterType="Hashmap">
-        INSERT INTO TB_FULLDIVE_USER
+    <insert id="cometInsert" parameterType="Hashmap">
+        INSERT INTO TB_FULLDIVE_COMET_HISTORY
         (
-            USER_ID,
-            COMET_USE_STATE,
-            COMET_PURCHASE_TIMESTAMP,
-            COMET_SALES_TIMESTAMP,
-            PAYMENT_ID
+            COMET_CURRENT_STREAM_KEY,
+            COMET_PURCHASE_USER_ID,
+            COMET_SALES_STAGE_ID,
+            COMET_COUNT
         )
         VALUES
-            (
-                #{userId},
-                #{cometUseState},
-                #{cometPurchaseTimestamp},
-                #{cometSalesTimestamp},
-                #{paymentId}
-            )
+        (
+            #{cometCurrentStreamKey},
+            #{cometPurchaseUserId},
+            #{cometSalesStageId},
+            #{cometCount}
+        )
     </insert>
+
+    <update id="userUpdate" parameterType="Hashmap">
+        UPDATE TB_FULLDIVE_COMET_HISTORY
+        SET
+            COMET_CURRENT_STREAM_KEY=#{},
+            COMET_PURCHASE_USER_ID=#{},
+            COMET_SALES_STAGE_ID=#{},
+            COMET_COUNT=#{}
+        WHERE USER_Email=#{userEmail}
+    </update>
 </mapper>

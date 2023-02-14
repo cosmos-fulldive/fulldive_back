@@ -13,6 +13,8 @@
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/CategoryService.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/CategoryServiceImpl.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/resource/StageResource.java
+/Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/ReportStoreImpl.java
+/Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/ReportService.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/CometStore.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/repository/UserRepository.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/entity/ArtistEntity.java
@@ -24,6 +26,7 @@
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/PaymentService.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/CometServiceImpl.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/CompanyStore.java
+/Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/ReportServiceImpl.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/StageServiceImpl.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/resource/CategoryResource.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/entity/MailEntity.java
@@ -31,9 +34,11 @@
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/FollowServiceImpl.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/StageStore.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/PaymentStoreImpl.java
+/Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/resource/ReportResource.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/CategoryStore.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/UserServiceImpl.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/CometStoreImpl.java
+/Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/ReportStore.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/FulldiveApplication.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/config/SHA256.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/CategoryStoreImpl.java
@@ -57,6 +62,7 @@
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/entity/StageEntity.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/PaymentStore.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/service/FollowService.java
+/Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/resource/DonationResource.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/store/StoreStore.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/resource/PaymentResource.java
 /Users/cjh/Documents/fulldive_back/src/main/java/com/fulldive/back/resource/ArtistResource.java

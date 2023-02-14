@@ -73,7 +73,17 @@ public class UserResource{
 		return judment;
 	}
 	
-	/*
+	/*SHA256 sha256 = new SHA256();
+		//SHA256으로 암호화된 비밀번호
+		String cryptogram = sha256.encrypt(inputPassword);
+
+		System.out.println(cryptogram);
+
+		//비밀번호 일치 여부
+		boolean judment = false;
+		judment  = cryptogram.equals(sha256.encrypt(databasePassword));
+		System.out.println(cryptogram.equals(sha256.encrypt(databasePassword)));
+		return judment;
 	 * 이메일로 유저정보 조회
 	*/
 	@PostMapping(value = "/user/findByUserEmail")
@@ -220,7 +230,7 @@ public class UserResource{
 		return result;
 	}
 
-	@PostMapping(value = "/user/findExistUser")
+	@PostMapping(	value = "/user/findExistUser")
 	public Map<String, Object> findExistUser(@RequestBody Map<String, Object> params) {
 		Map<String, Object> result =  new HashMap<>();
 		List<UserEntity> existUser = userService.findExistUser(params);

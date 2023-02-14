@@ -66,4 +66,11 @@
 		WHERE STAGE_ID = #{stageId} and STAGE_MAKE_USER_ID=#{userId}
 	</delete>
 
+    <update id="changeStageStage" parameterType="Hashmap">
+        UPDATE TB_FULLDIVE_STAGE
+        SET
+            STAGE_CURRENT=#{stageCurrent}
+        WHERE STAGE_ID = #{stageId}
+    </update>
+
 </mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="ReportDMLMapper">
+    <insert id="reportInsert" parameterType="Hashmap">
+        INSERT INTO TB_FULLDIVE_REPORT
+        (
+            REPORT_SEND_ID,
+            REPORT_USER_RECEPTION_ID,
+            REPORT_STAGE_RECEPTION_ID,
+            REPORT_CONTENT
+        )
+        VALUES
+        (
+            #{reportSendId},
+            #{reportUserReceptionId},
+            #{reportStageReceptionId},
+            #{reportContent}
+        )
+    </insert>
+</mapper>

@@ -112,23 +112,23 @@ public class CometResource {
 		return null;
 	}
 
-	public static void main(String[] args) {
-		// 파일을 관리할 폴더부터 만들기
-		final String path = "/Users/cjh/Documents";
-		File folder = new File(path);
-		File[] fileList = folder.listFiles();
-
-		for(int i=0; i<fileList.length; i++){
-			File f = fileList[i];
-
-			if(f.isFile()){// 파일이 있다면 파일 이름 출력
-				System.out.printf("%-15s %.3f kb \n",f.getName(),((double)f.length())/(double)1000);
-				// System.out.println(f.getName() + "  " + ((double)f.length())/(double)1000 + "kb");
-			}
-		}
-
-		System.out.println(fileList);
-	}
+//	public static void main(String[] args) {
+//		// 파일을 관리할 폴더부터 만들기
+//		final String path = "/Users/cjh/Documents";
+//		File folder = new File(path);
+//		File[] fileList = folder.listFiles();
+//
+//		for(int i=0; i<fileList.length; i++){
+//			File f = fileList[i];
+//
+//			//if(f.isFile()){// 파일이 있다면 파일 이름 출력
+////				System.out.printf("%-15s %.3f kb \n",f.getName(),((double)f.length())/(double)1000);
+//				 System.out.println(f.getName() + "  " + ((double)f.length())/(double)1000 + "kb");
+//			//}
+//		}
+//
+//		System.out.println(fileList);
+//	}
 	
 	
 }
