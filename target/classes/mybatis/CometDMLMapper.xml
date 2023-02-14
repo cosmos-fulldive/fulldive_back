@@ -18,14 +18,4 @@
             #{cometCount}
         )
     </insert>
-
-    <update id="userUpdate" parameterType="Hashmap">
-        UPDATE TB_FULLDIVE_COMET_HISTORY
-        SET
-            COMET_CURRENT_STREAM_KEY=#{},
-            COMET_PURCHASE_USER_ID=#{},
-            COMET_SALES_STAGE_ID=#{},
-            COMET_COUNT=#{}
-        WHERE USER_Email=#{userEmail}
-    </update>
 </mapper>
