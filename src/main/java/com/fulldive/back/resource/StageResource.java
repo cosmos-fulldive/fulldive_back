@@ -4,6 +4,7 @@ import com.fulldive.back.entity.StageEntity;
 import com.fulldive.back.service.StageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,7 +105,7 @@ public class StageResource{
 	 * 스테이지 정보등록
 	*/
 	@PostMapping(value = "/stage/stageInsert")
-	public int stageJoinIdChk(@RequestBody Map<String, Object> params) {
+	public int stageInsert(@RequestBody Map<String, Object> params) {
 		int result = 200;
 		System.out.println("params: " + params);
 		int resultList = stageService.stageInsert(params);
@@ -176,5 +177,8 @@ public class StageResource{
 		return result;
 	}
 
-	
+	@PostMapping(value = "stage/stageImageInsert")
+	public void stageImageInsert(MultipartHttpServletRequest request) {
+		System.out.println("request: " + request);
+	}
 }
