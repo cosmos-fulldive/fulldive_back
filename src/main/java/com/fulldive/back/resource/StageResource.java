@@ -3,6 +3,7 @@ package com.fulldive.back.resource;
 import com.fulldive.back.entity.StageEntity;
 import com.fulldive.back.service.StageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -184,7 +185,12 @@ public class StageResource{
 	public void stageImageInsert(MultipartHttpServletRequest request) {
 		Map<String, Object> map = new HashMap<>();
 
-		String path = "/var/lib/docker/volumes/rtmp_vod/_data/media/live/cosimg";
+		String path = System.getProperty("user.dir");
+
+		path = path + "/src/main/resources/templates/cosimg";
+//		System.out.println("path: " + path + "/src/main/resources/templates/cosimg");
+
+		System.out.println("Working Directory = " + path);
 
 		File fileDir = new File(path);
 

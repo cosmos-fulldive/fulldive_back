@@ -1,5 +1,4 @@
 com/fulldive/back/service/PaymentService.class
-com/fulldive/back/resource/StageResource.class
 com/fulldive/back/store/CategoryStoreImpl.class
 com/fulldive/back/store/UserStoreImpl.class
 com/fulldive/back/entity/StageEntity.class
