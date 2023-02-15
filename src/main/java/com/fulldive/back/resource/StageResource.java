@@ -4,12 +4,15 @@ import com.fulldive.back.entity.StageEntity;
 import com.fulldive.back.service.StageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -178,11 +181,39 @@ public class StageResource{
 	}
 
 	@PostMapping(value = "stage/stageImageInsert")
-	public Map<String, Object> stageImageInsert(MultipartHttpServletRequest request) {
+	public void stageImageInsert(MultipartHttpServletRequest request) {
 		Map<String, Object> map = new HashMap<>();
 
-		System.out.println("request: " + request);
-		map.put("result", request);
-		return map;
+		String path = "/var/lib/docker/volumes/rtmp_vod/_data/media/live/cosimg";
+
+		File fileDir = new File(path);
+
+		if (!fileDir.exists()) {
+			fileDir.mkdirs();
+		}
+
+		List<MultipartFile> fileList = new ArrayList<MultipartFile>();
+
+
+		if(request.getFiles("photo").get(0).getSize() != 0){
+			System.out.println("get photo");
+			fileList = request.getFiles("photo");
+		}
+
+		System.out.println("fileList: " + fileList.size());
+
+		for (MultipartFile mf : fileList) {
+
+			String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+			String saveFileName = String.format(originFileName);
+
+			try {
+				// 파일생성
+				mf.transferTo(new File(path, saveFileName));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 }
