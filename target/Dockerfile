@@ -1,6 +1,6 @@
 FROM appinair/jdk11-maven
 
-COPY cosimg cosimg
+COPY cosimg/ex.txt ex.txt
 
 COPY back-0.0.1-SNAPSHOT.jar app.jar
 
