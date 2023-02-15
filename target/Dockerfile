@@ -1,13 +1,7 @@
 FROM appinair/jdk11-maven
 
-RUN mkdir /src
+COPY cosimg cosimg
 
-WORKDIR /src
-
-VOLUME /src
-
-COPY /src/main/resources/templates/cosimg cosimg
-
-COPY target/back-0.0.1-SNAPSHOT.jar app.jar
+COPY back-0.0.1-SNAPSHOT.jar app.jar
 
 ENTRYPOINT ["java","-jar","/app.jar"]
