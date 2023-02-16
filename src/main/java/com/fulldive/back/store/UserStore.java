@@ -55,4 +55,9 @@ public class UserStore implements UserStoreImpl{
 		return sqlSession.selectList(ReadOnlyMapper + "findExistUser", params);
 	}
 
+	@Override
+	public List<UserEntity> findUserComet(Map<String, Object> params) {
+		return sqlSession.selectList(ReadOnlyMapper + "findUserComet", params);
+	}
+
 }

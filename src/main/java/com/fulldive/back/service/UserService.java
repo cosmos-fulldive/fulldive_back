@@ -61,5 +61,10 @@ public class UserService implements UserServiceImpl {
 		return userStore.findExistUser(params);
 	}
 
+	@Override
+	public List<UserEntity> findUserComet(Map<String, Object> params) {
+		return userStore.findUserComet(params);
+	}
+
 
 }

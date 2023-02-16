@@ -138,6 +138,23 @@
 		SELECT USER_ID FROM TB_FULLDIVE_USER WHERE USER_ID = #{userId}
 	</select>
 
+	<select id="findUserComet" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.UserEntity" resultMap="userSelectRM">
+	SELECT
+	HTB.comet_purchase_user_id as "USER_ID",
+	SUM(HTB.comet_count) USER_COMET
+	FROM
+	(SELECT
+	comet_purchase_user_id,
+	CASE
+	WHEN comet_current_stream_key IS NOT NULL THEN -(COMET_COUNT)
+	ELSE comet_count END AS COMET_COUNT
+	FROM
+	tb_fulldive_comet_history
+	WHERE comet_purchase_user_id =  #{userId}
+	) HTB
+	GROUP BY
+	HTB.comet_purchase_user_id
+	</select>
 
 
 </mapper>

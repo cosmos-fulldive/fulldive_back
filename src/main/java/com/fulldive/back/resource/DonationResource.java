@@ -1,8 +1,10 @@
 package com.fulldive.back.resource;
 
 import com.fulldive.back.entity.CometEntity;
+import com.fulldive.back.entity.UserEntity;
 import com.fulldive.back.service.CometService;
 import com.fulldive.back.service.StageService;
+import com.fulldive.back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,8 @@ public class DonationResource {
 	StageService stageService;
 	@Autowired
 	CometService cometService;
+	@Autowired
+	UserService userService;
 
 	
 
@@ -29,10 +33,34 @@ public class DonationResource {
 	@PostMapping(value = "/donation/donationInsert")
 	public Map<String, Object> donationInsert(@RequestBody Map<String, Object> params) throws Exception {
 		Map<String, Object> result = new HashMap<>();
+		boolean userId_B = !params.containsKey("cometPurchaseUserId");
+		boolean cometCurrentStreamKey_B = !params.containsKey("cometCurrentStreamKey");
+		boolean cometSalesStageId_B = !params.containsKey("cometSalesStageId");
+		boolean cometCount_B = !params.containsKey("cometCount");
+
+   		if(userId_B || cometCurrentStreamKey_B || cometSalesStageId_B || cometCount_B) {
+			result.put("result", 400);
+			result.put("message", "필수항목값 에러");
+			return result;
+		}
+		params.put("userId", (String) params.get("cometPurchaseUserId"));
+		List<UserEntity> findUserComet = userService.findUserComet(params);
+		if(findUserComet.size() < 1){
+			result.put("result", 400);
+			result.put("message", "유저 값 에러");
+			return result;
+		}
+		int userComet = findUserComet.get(0).getUserComet();
 
 		String cometCurrentStreamKey = (String) params.get("cometCurrentStreamKey");
 		String cometSalesStageId = (String) params.get("cometSalesStageId");
 		int cometCount = (int) params.get("cometCount");
+
+		if(userComet < cometCount) {
+			result.put("result", 400);
+			result.put("message", "코멧부족에러");
+			return result;
+		}
 
 		if(cometCurrentStreamKey == null || cometCurrentStreamKey.equals("") || cometSalesStageId == null || cometSalesStageId.equals("") || cometCount < 1 ) {
 			result.put("result", 400);

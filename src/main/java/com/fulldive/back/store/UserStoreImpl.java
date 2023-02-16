@@ -17,4 +17,5 @@ public interface UserStoreImpl {
 
 	List<UserEntity> userInfo(Map<String, Object> params);
 	List<UserEntity> findExistUser(Map<String, Object> params);
+	List<UserEntity> findUserComet(Map<String, Object> params);
 }
