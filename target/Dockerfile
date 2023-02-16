@@ -1,6 +1,6 @@
 FROM appinair/jdk11-maven
 
-WORKDIR pwd
+WORKDIR /app
 
 COPY back-0.0.1-SNAPSHOT.jar app.jar
 
