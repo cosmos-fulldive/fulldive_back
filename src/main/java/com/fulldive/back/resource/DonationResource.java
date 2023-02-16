@@ -61,6 +61,9 @@ public class DonationResource {
 			result.put("message", "코멧부족에러");
 			return result;
 		}
+		result.put("userComet",userComet);
+		result.put("cometCount",cometCount);
+		return result;
 
 		if(cometCurrentStreamKey == null || cometCurrentStreamKey.equals("") || cometSalesStageId == null || cometSalesStageId.equals("") || cometCount < 1 ) {
 			result.put("result", 400);
