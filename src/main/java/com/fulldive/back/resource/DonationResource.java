@@ -61,24 +61,24 @@ public class DonationResource {
 			result.put("message", "코멧부족에러");
 			return result;
 		}
-		result.put("userComet",userComet);
-		result.put("cometCount",cometCount);
+//		result.put("userComet",userComet);
+//		result.put("cometCount",cometCount);
 //		return result;
-//
-//		if(cometCurrentStreamKey == null || cometCurrentStreamKey.equals("") || cometSalesStageId == null || cometSalesStageId.equals("") || cometCount < 1 ) {
-//			result.put("result", 400);
-//			result.put("message", "후원 필수 값 에러");
-//			return result;
-//		}
-//
-//		int resultList = cometService.cometInsert(params);
-//
-//		if(resultList == 0) {
-//			result.put("result",400);
-//		}
-//		else {
-//			result.put("result",200);
-//		}
+
+		if(cometCurrentStreamKey == null || cometCurrentStreamKey.equals("") || cometSalesStageId == null || cometSalesStageId.equals("") || cometCount < 1 ) {
+			result.put("result", 400);
+			result.put("message", "후원 필수 값 에러");
+			return result;
+		}
+
+		int resultList = cometService.cometInsert(params);
+
+		if(resultList == 0) {
+			result.put("result",400);
+		}
+		else {
+			result.put("result",200);
+		}
 		return result;
 	}
 
