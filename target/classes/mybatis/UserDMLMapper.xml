@@ -6,33 +6,42 @@
 	<insert id="userJoin" parameterType="Hashmap"> 
         INSERT INTO TB_FULLDIVE_USER
         (
-        USER_PASSWORD,
-        USER_EMAIL,
-        USER_CHK_EMAIL,
-        USER_ACCESS,
-        USER_NICKNAME,
-        USER_BIRTH,
-		USER_NAME,
-		USER_PHONE,
-		USER_PROFILE_IMAGE,
-		USER_GENDER,
-		USER_NATION,
-		USER_ADDRESS
+            USER_EMAIL,
+            USER_CHK_EMAIL,
+            USER_PASSWORD,
+            USER_NICKNAME,
+            USER_BIRTH,
+            USER_NAME,
+            USER_ACCESS,
+            USER_PHONE,
+            USER_PROFILE_IMAGE,
+            USER_GENDER,
+            USER_NATION,
+            USER_ADDRESS,
+            USER_CITY,
+            USER_CATEGORY1,
+            USER_CATEGORY2,
+            USER_CATEGORY3
         ) 
         VALUES 
         (
-          #{userPassword},
-          #{userEmail},
-          #{userChkEmail},
-          #{userAccess},
-          #{userNickname},
-          #{userBirth},
-          #{userName},
-          #{userPhone},
-          #{userProfileImage},
-          #{userGender},
-          #{userNation},
-          #{userAddress})
+            #{userEmail},
+            #{userChkEmail},
+            #{userPassword},
+            #{userNickname},
+            #{userBirth},
+            #{userName},
+            #{userAccess},
+            #{userPhone},
+            #{userProfile_image},
+            #{userGender},
+            #{userNation},
+            #{userAddress},
+            #{userCity},
+            #{userCategory1},
+            #{userCategory2},
+            #{userCategory3}
+        )
     </insert>
     
     <update id="userUpdate" parameterType="Hashmap">

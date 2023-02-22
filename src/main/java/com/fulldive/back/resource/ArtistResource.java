@@ -21,7 +21,7 @@ public class ArtistResource{
 	/*
 	 * 아티스트 정보등록
 	*/
-	@PostMapping(value = "/artist/artistInsert")
+	@PostMapping(value = "/artist/join")
 	public int artistInsert(@RequestBody Map<String, Object> params) {
 		int result = 200;
 		System.out.println("params: " + params);
