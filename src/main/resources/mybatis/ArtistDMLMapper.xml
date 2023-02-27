@@ -3,7 +3,7 @@
  
 <mapper namespace="ArtistDMLMapper">
     <insert id="artistInsert" parameterType="Hashmap">
-        INSERT INTO TB_FULLDIVE_USER
+        INSERT INTO TB_FULLDIVE_ARTIST
         (
             ARTIST_CATEGORY,
             ARTIST_DESCRIPTION,
