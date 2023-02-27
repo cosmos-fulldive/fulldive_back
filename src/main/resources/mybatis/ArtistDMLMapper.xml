@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="ArtistDMLMapper">
-    <insert id="artistJoin" parameterType="Hashmap">
+    <insert id="artistInsert" parameterType="Hashmap">
         INSERT INTO TB_FULLDIVE_USER
         (
             ARTIST_CATEGORY,
@@ -21,27 +21,29 @@
             ARTIST_MEMBER,
             ARTIST_PHONE,
             ARTIST_NATION,
-            ARTIST_ACCEPT
+            ARTIST_ACCEPT,
+            ARTIST_PASSWORD
         )
         VALUES
-            (
-                #{artistCategory},
-                #{artistDescription},
-                #{artistSnsI},
-                #{artistSnsF},
-                #{artistSnsT},
-                #{artistSnsY},
-                #{artistSnsW},
-                #{artistCompany},
-                #{artistApproval},
-                #{artistName},
-                #{artistEmail},
-                #{artistBirth},
-                #{artistGender},
-                #{artistMember},
-                #{artistPhone},
-                #{artistNation},
-                #{artistAccept}
-            )
+        (
+            #{artistCategory},
+            #{artistDescription},
+            #{artistSnsI},
+            #{artistSnsF},
+            #{artistSnsT},
+            #{artistSnsY},
+            #{artistSnsW},
+            #{artistCompany},
+            #{artistApproval},
+            #{artistName},
+            #{artistEmail},
+            #{artistBirth},
+            #{artistGender},
+            #{artistMember},
+            #{artistPhone},
+            #{artistNation},
+            #{artistAccept},
+            #{artistPassword}
+        )
     </insert>
 </mapper>
