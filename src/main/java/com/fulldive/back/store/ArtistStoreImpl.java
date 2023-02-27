@@ -15,5 +15,7 @@ public interface ArtistStoreImpl {
 	List<ArtistEntity> findAllPopularityArtistList();
 	List<ArtistEntity> findAllCreateArtistList();
 	List<ArtistEntity> findAllNameArtistList();
+
+	Map<String, Object> chkArtistEmail(Map<String, Object> params);
 	
 }

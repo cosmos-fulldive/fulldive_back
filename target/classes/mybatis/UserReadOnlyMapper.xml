@@ -156,5 +156,10 @@
 	HTB.comet_purchase_user_id
 	</select>
 
+	<select id="chkLandingUser" parameterType="java.util.HashMap" resultType="HashMap">
+		select count(*) from table_landing where landing_phone = #{landing_phone}
+	</select>
+
+
 
 </mapper>

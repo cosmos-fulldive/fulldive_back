@@ -2,6 +2,8 @@ package com.fulldive.back.resource;
 
 import com.fulldive.back.config.RandomConfig;
 import com.fulldive.back.entity.UserEntity;
+import com.fulldive.back.service.ArtistService;
+import com.fulldive.back.service.LandingService;
 import com.fulldive.back.service.UserService;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
@@ -29,6 +31,13 @@ public class UserResource{
 	RandomConfig randomConfig = new RandomConfig();
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	ArtistService artistService;
+
+	@Autowired
+	LandingService landingService;
+
 
 	/*
 	 * 유저정보, 코멧, 티켓
@@ -171,6 +180,12 @@ public class UserResource{
 		int result = 200;
 		System.out.println("params: " + params);
 		List<UserEntity> resultList = userService.userJoinIdChk(params);
+
+		params.put("artistEmail", params.get("userEmail"));
+		Map<String, Object> artistResult = artistService.chkArtistEmail(params);
+		if((int) artistResult.get("usercount") > 0) {
+			return result;
+		}
 		if(resultList.size() != 0) {result = 400;}
 		return result;
 	}
@@ -242,6 +257,32 @@ public class UserResource{
 		}
 		return result;
 	}
-	
+
+	@PostMapping(value = "/insertLanding")
+	public Map<String, Object> userLanding(@RequestBody Map<String, Object> params) {
+		Map<String, Object> result = new HashMap<>();
+		System.out.println("params:" + params);
+
+		List<Object> chkPhone = landingService.chkLandingUser(params);
+		System.out.println("chkPhone :" + chkPhone.get(0));
+		Map<String, Object> chkPhoneResult = (Map<String, Object>) chkPhone.get(0);
+
+		if((Long) chkPhoneResult.get("count") != 0L ){
+			result.put("result", 400);
+			result.put("message", "이미 등록된 번호");
+			return result;
+		}
+		int landingResult = landingService.userLanding(params);
+		System.out.println("landingResult:" + landingResult);
+		if(landingResult == 0) {
+			result.put("result", 400);
+			result.put("message", "등록 오류");
+			return result;
+		}
+		result.put("result", 200);
+		result.put("message", "success");
+		return result;
+	}
+
 	
 }

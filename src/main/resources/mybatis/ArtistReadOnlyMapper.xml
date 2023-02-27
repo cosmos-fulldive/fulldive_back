@@ -183,4 +183,10 @@
 		FROM TB_FULLDIVE_ARTIST
 		ORDER BY ARTIST_NAME DESC
 	</select>
+
+	<select id="chkArtistEmail" parameterType="java.util.HashMap" resultType="HashMap" >
+		select count(*) from tb_fulldive_artist
+		where artist_email = #{artistEmail}
+	</select>
+
 </mapper>

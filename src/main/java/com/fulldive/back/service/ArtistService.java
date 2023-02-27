@@ -52,5 +52,10 @@ public class ArtistService implements ArtistServiceImpl {
 		return artistStore.findAllNameArtistList();
 	}
 
+	@Override
+	public Map<String, Object> chkArtistEmail(Map<String, Object> params) {
+		return artistStore.chkArtistEmail(params);
+	}
+
 
 }

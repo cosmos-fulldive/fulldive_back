@@ -64,4 +64,9 @@
 		WHERE USER_EMAIL=#{userEmail}
 	</delete>
 
+    <insert id="userLanding" parameterType="Hashmap">
+        insert into table_landing(LANDING_NAME, LANDING_PHONE)
+        values(#{landing_name}, #{landing_phone})
+    </insert>
+
 </mapper>
