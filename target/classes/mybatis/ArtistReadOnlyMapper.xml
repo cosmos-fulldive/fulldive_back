@@ -27,6 +27,7 @@
 		<result property="artistSnsT" column="ARTIST_SNS_T"/>
 		<result property="artistSnsY" column="ARTIST_SNS_Y"/>
 		<result property="artistSnsW" column="ARTIST_SNS_W"/>
+		<result property="artistPassword" column="ARTIST_PASSWORD"/>
 		<result property="categoryNameKr1" column="CATEGORY_NAME_KR1"/>
 		<result property="categoryNameKr2" column="CATEGORY_NAME_KR2"/>
 		<result property="categoryNameKr3" column="CATEGORY_NAME_KR3"/>
@@ -37,24 +38,30 @@
 	</resultMap>
 	
     <select id="artistList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.ArtistEntity" resultMap="ArtistSelectRM">
-        SELECT
-			USER_ID,
-			ARTIST_CATEGORY,
-			ARTIST_DESCRIPTION,
-			ARTIST_SNS_I,
-			ARTIST_SNS_F,
-			ARTIST_SNS_T,
-			ARTIST_SNS_Y,
-			STAGE_DESCRIPTION,
-			ARTIST_SNS_W,
-			CREATE_TIMESTAMP
+		SELECT
+		ARTIST_ID,
+		ARTIST_CATEGORY,
+		ARTIST_DESCRIPTION,
+		ARTIST_SNS_I,
+		ARTIST_SNS_F,
+		ARTIST_SNS_T,
+		ARTIST_SNS_Y,
+		ARTIST_SNS_W,
+		ARTIST_COMPANY,
+		ARTIST_APPROVAL,
+		ARTIST_NAME,
+		ARTIST_EMAIL,
+		ARTIST_BIRTH,
+		ARTIST_GENDER,
+		ARTIST_MEMBER,
+		ARTIST_PHONE,
+		ARTIST_NATION,
+		ARTIST_ACCEPT,
+		ARTIST_PASSWORD
 		FROM
-			TB_FULLDIVE_ARTIST
+		TB_FULLDIVE_ARTIST TFA
 		WHERE 1=1
-		
-		 <if test='userId != null'>
-			AND USER_ID = #{userId}
- 		</if>
+		AND ARTIST_EMAIL = #{userEmail}
     </select>
 
 	<select id="findArtist" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.ArtistEntity" resultMap="ArtistSelectRM">

@@ -57,5 +57,10 @@ public class ArtistService implements ArtistServiceImpl {
 		return artistStore.chkArtistEmail(params);
 	}
 
+	@Override
+	public List<ArtistEntity> artistList(Map<String, String> params) {
+		return artistStore.artistList(params);
+	}
+
 
 }

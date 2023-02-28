@@ -1,6 +1,7 @@
 package com.fulldive.back.resource;
 
 import com.fulldive.back.config.RandomConfig;
+import com.fulldive.back.entity.ArtistEntity;
 import com.fulldive.back.entity.UserEntity;
 import com.fulldive.back.service.ArtistService;
 import com.fulldive.back.service.LandingService;
@@ -112,30 +113,52 @@ public class UserResource{
 
 		System.out.println("RequestParams: " + params);
 		List<UserEntity> userList = userService.userLogin(params);
+		List<ArtistEntity> artistList = artistService.artistList(params);
+
 		System.out.println("userList:" + userList);
 		result.put("responses", 400);
 		result.put("exception", "");
-		System.out.println(userList.size());
-		if(userList.size() == 0 || userList == null) {
+		System.out.println("userList:" + userList.size());
+		System.out.println("artistList:" + artistList.size());
+		if(userList.size() == 0 && artistList.size() == 0) {
 			System.out.println("DATA NOT EXSIST");
 			    throw new Exception("아이디를 확인해 주시기 바랍니다");
 		}else {
-			System.out.println("Resource: " + userList.get(0).getUserEmail());
-			if(userList.get(0).getUserPassword().equals(params.get("userPassword"))) {
-				System.out.println("DATA EXSIST");
-				result.put("responses", 200);
-				result.put("jwt", "Test");
-				System.out.println("USER EMAIL:" + userList.get(0).getUserEmail());
-				if(userList.get(0).getUserEmail().equals("admin@milkomeda.com")) {
-					result.put("admin", "1");
+			if(userList.size() != 0) {
+				if(userList.get(0).getUserPassword().equals(params.get("userPassword"))) {
+					System.out.println("DATA EXSIST");
+					result.put("responses", 200);
+					result.put("jwt", "Test");
+					System.out.println("USER EMAIL:" + userList.get(0).getUserEmail());
+					if(userList.get(0).getUserEmail().equals("admin@milkomeda.com")) {
+						result.put("admin", "1");
+					}else {
+						result.put("admin", "2");
+					}
+					result.put("type", 1);
+					result.put("userInfo", userList);
 				}else {
-					result.put("admin", "2");
+					throw new Exception("비밀번호를 확인해 주시기 바랍니다.");
 				}
-
-				result.put("userInfo", userList);
-			}else {
-				throw new Exception("비밀번호를 확인해 주시기 바랍니다.");
+			}else if(artistList.size() != 0) {
+				System.out.println("artistList.get(0)" + artistList.get(0));
+				if(artistList.get(0).getArtistPassword().equals(params.get("userPassword"))) {
+					System.out.println("DATA EXSIST");
+					result.put("responses", 200);
+					result.put("jwt", "Test");
+					System.out.println("USER EMAIL:" + artistList.get(0).getArtistEmail());
+					if(artistList.get(0).getArtistEmail().equals("admin@milkomeda.com")) {
+						result.put("admin", "1");
+					}else {
+						result.put("admin", "2");
+					}
+					result.put("type", 2);
+					result.put("userInfo", artistList);
+				}else {
+					throw new Exception("비밀번호를 확인해 주시기 바랍니다.");
+				}
 			}
+
 		}		
 
 		return result;	

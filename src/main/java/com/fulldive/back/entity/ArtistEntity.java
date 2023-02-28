@@ -27,6 +27,7 @@ public class ArtistEntity {
 	private String artistSnsT;
 	private String artistSnsY;
 	private String artistSnsW;
+	private String artistPassword;
 	private String categoryNameKr;
 	private String categoryNameKr1;
 	private String categoryNameKr2;

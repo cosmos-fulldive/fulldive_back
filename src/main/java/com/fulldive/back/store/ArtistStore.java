@@ -55,4 +55,9 @@ public class ArtistStore implements ArtistStoreImpl{
 		return sqlSession.selectOne(ReadOnlyMapper + "chkArtistEmail", params);
 	}
 
+	@Override
+	public List<ArtistEntity> artistList(Map<String, String> params) {
+		return sqlSession.selectList(ReadOnlyMapper + "artistList", params);
+	}
+
 }
