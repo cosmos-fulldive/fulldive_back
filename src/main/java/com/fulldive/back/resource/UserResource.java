@@ -206,9 +206,9 @@ public class UserResource{
 
 		params.put("artistEmail", params.get("userEmail"));
 		Map<String, Object> artistResult = artistService.chkArtistEmail(params);
-		if((int) artistResult.get("usercount") > 0) {
-			return result;
-		}
+//		if((int) artistResult.get("usercount") > 0) {
+//			return result;
+//		}
 		if(resultList.size() != 0) {result = 400;}
 		return result;
 	}
