@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.*;
@@ -22,6 +23,8 @@ import java.time.Duration;
 import java.security.NoSuchAlgorithmException;
 
 import com.fulldive.back.config.SHA256;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -305,6 +308,48 @@ public class UserResource{
 		result.put("result", 200);
 		result.put("message", "success");
 		return result;
+	}
+
+	@PostMapping(value = "user/userImageInsert")
+	public void stageImageInsert(MultipartHttpServletRequest request) {
+		Map<String, Object> map = new HashMap<>();
+
+		String path = System.getProperty("user.dir");
+
+		path = path + "/target/cosimg";
+//		System.out.println("path: " + path + "/src/main/resources/templates/cosimg");
+
+		System.out.println("Working Directory = " + path);
+
+		File fileDir = new File(path);
+
+		if (!fileDir.exists()) {
+			fileDir.mkdirs();
+		}
+
+		List<MultipartFile> fileList = new ArrayList<MultipartFile>();
+
+
+		if(request.getFiles("photo").get(0).getSize() != 0){
+			System.out.println("get photo");
+			fileList = request.getFiles("photo");
+		}
+
+		System.out.println("fileList: " + fileList.size());
+
+		for (MultipartFile mf : fileList) {
+
+			String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+			String saveFileName = String.format(originFileName);
+
+			try {
+				// 파일생성
+				mf.transferTo(new File(path, saveFileName));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	
