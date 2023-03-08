@@ -20,7 +20,8 @@
             STAGE_CATEGORY_ID,
             STAGE_TICKET_ID,
             STAGE_ADULT_TYPE,
-            STAEG_STUDIO_TYPE
+            STAEG_STUDIO_TYPE,
+            STAGE_IMAGE_EXTENSION
         ) 
         VALUES 
         (
@@ -38,7 +39,8 @@
             #{stageCategoryId},
             #{stageTicketId},
             #{stageAdultType},
-            #{stageStudioType}
+            #{stageStudioType},
+            #{stageImageExtension}
 		)
     </insert>
     

@@ -23,4 +23,5 @@ public class StageEntity {
 	private String stageStreamKey;
 	private String stageCombineId;
 	private String createTimestamp;
+	private String stageImageExtension;
 }
