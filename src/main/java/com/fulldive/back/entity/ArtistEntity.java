@@ -36,6 +36,8 @@ public class ArtistEntity {
 	private String categoryNameEn1;
 	private String categoryNameEn2;
 	private String categoryNameEn3;
+	private String artistLogo;
+	private String artistImage;
 	private Timestamp createTimestamp;
 
 }

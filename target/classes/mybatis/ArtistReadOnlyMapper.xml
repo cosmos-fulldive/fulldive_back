@@ -34,6 +34,8 @@
 		<result property="categoryNameEn1" column="CATEGORY_NAME_EN1"/>
 		<result property="categoryNameEn2" column="CATEGORY_NAME_EN2"/>
 		<result property="categoryNameEn3" column="CATEGORY_NAME_EN3"/>
+		<result property="artistLogo" column="ARTIST_LOGO"/>
+		<result property="artistImage" column="ARTIST_IMAGE"/>
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 	</resultMap>
 	
@@ -143,27 +145,11 @@
 
 	<select id="findAllCreateArtistList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.ArtistEntity" resultMap="ArtistSelectRM">
 		SELECT
-			ARTIST_ID
-			 , ARTIST_CATEGORY
-			 , ARTIST_DESCRIPTION
-			 , ARTIST_SNS_I
-			 , ARTIST_SNS_F
-			 , ARTIST_SNS_T
-			 , ARTIST_SNS_Y
-			 , ARTIST_SNS_W
-			 , CREATE_TIMESTAMP
-			 , ARTIST_COMPANY
-			 , ARTIST_APPROVAL
-			 , ARTIST_NAME
-			 , ARTIST_EMAIL
-			 , ARTIST_BIRTH
-			 , ARTIST_GENDER
-			 , ARTIST_MEMBER
-			 , ARTIST_PHONE
-			 , ARTIST_NATION
-			 , ARTIST_ACCEPT
+			ARTIST_ID, ARTIST_CATEGORY, ARTIST_DESCRIPTION, ARTIST_SNS_I, ARTIST_SNS_F, ARTIST_SNS_T, ARTIST_SNS_Y, ARTIST_SNS_W, CREATE_TIMESTAMP, ARTIST_COMPANY, ARTIST_APPROVAL, ARTIST_NAME, ARTIST_EMAIL, ARTIST_BIRTH, ARTIST_GENDER, ARTIST_MEMBER, ARTIST_PHONE, ARTIST_NATION, ARTIST_ACCEPT, ARTIST_PASSWORD, ARTIST_LOGO, ARTIST_IMAGE
 		FROM TB_FULLDIVE_ARTIST
+		WHERE 1=1
 		ORDER BY CREATE_TIMESTAMP DESC
+			LIMIT 6
 	</select>
 
 	<select id="findAllNameArtistList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.ArtistEntity" resultMap="ArtistSelectRM">

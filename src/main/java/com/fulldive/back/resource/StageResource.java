@@ -187,7 +187,7 @@ public class StageResource{
 
 		String path = System.getProperty("user.dir");
 
-		path = path + "/target/cosimg";
+		path = path + "/target/cosimg/stage";
 //		System.out.println("path: " + path + "/src/main/resources/templates/cosimg");
 
 		System.out.println("Working Directory = " + path);

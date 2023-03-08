@@ -316,7 +316,7 @@ public class UserResource{
 
 		String path = System.getProperty("user.dir");
 
-		path = path + "/target/cosimg";
+		path = path + "/target/cosimg/user";
 //		System.out.println("path: " + path + "/src/main/resources/templates/cosimg");
 
 		System.out.println("Working Directory = " + path);
