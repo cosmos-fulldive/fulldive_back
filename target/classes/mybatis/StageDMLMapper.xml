@@ -14,7 +14,6 @@
             STAGE_ARTIST_ID,
             STAGE_DESCRIPTION,
             STAGE_THUMBNAIL_IMAGE,
-            STAGE_CURRENT,
             STAGE_STREAM_KEY,
             STAGE_COMBINE_ID,
             STAGE_CATEGORY_ID,
@@ -33,7 +32,6 @@
             #{stageArtistId}, --참여아티스트
             #{stageDescription}, --공연설명
             #{stageThumbnailImage},
-            #{stageCurrent},
             #{stageStreamKey},
             #{stageCombineId},
             #{stageCategoryId},
