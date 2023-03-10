@@ -133,13 +133,17 @@ public class UserResource{
 					result.put("responses", 200);
 					result.put("jwt", "Test");
 					System.out.println("USER EMAIL:" + userList.get(0).getUserEmail());
+					String userId = (String) userList.get(0).getUserId();
+					Map<String, Object> infoParams = new HashMap<>();
+					infoParams.put("userId", userId);
+					List<UserEntity> userInfo = userService.userInfo(infoParams);
 					if(userList.get(0).getUserEmail().equals("admin@milkomeda.com")) {
 						result.put("admin", "1");
 					}else {
 						result.put("admin", "2");
 					}
 					result.put("type", 1);
-					result.put("userInfo", userList);
+					result.put("userInfo", userInfo);
 				}else {
 					throw new Exception("비밀번호를 확인해 주시기 바랍니다.");
 				}

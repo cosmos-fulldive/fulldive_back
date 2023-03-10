@@ -101,6 +101,14 @@ public class ArtistResource{
 		result.put("artistList",nameArtistList);
 		return result;
 	}
+
+	@RequestMapping(value = "/artist/findByAllArtist")
+	public Map<String, Object> findAllArtist() {
+		Map<String, Object> result = new HashMap<>();
+		List<ArtistEntity> artistList = artistService.findAllNameArtistList();
+		result.put("artistList", artistList);
+		return result;
+	}
 	
 	
 }
