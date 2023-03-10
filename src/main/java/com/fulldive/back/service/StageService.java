@@ -1,5 +1,6 @@
 package com.fulldive.back.service;
 
+import com.fulldive.back.entity.StageArtistListEntity;
 import com.fulldive.back.entity.StageEntity;
 import com.fulldive.back.store.StageStore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class StageService implements StageServiceImpl {
     private StageStore stageStore;
 
 	@Override
-	public int stageInsert(Map<String, Object> params) {
+	public Map<String, Object> stageInsert(Map<String, Object> params) {
 		return stageStore.stageInsert(params);
 	}
 
@@ -60,6 +61,16 @@ public class StageService implements StageServiceImpl {
 	@Override
 	public int changeStageState(Map<String, Object> params) {
 		return stageStore.changeStageStage(params);
+	}
+
+	@Override
+	public int stageArtistListInsert(Map<String, Object> params) {
+		return stageStore.stageArtistListInsert(params);
+	}
+
+	@Override
+	public List<StageArtistListEntity> stageArtistList(Map<String, Object> params) {
+		return stageStore.stageArtistList(params);
 	}
 
 }

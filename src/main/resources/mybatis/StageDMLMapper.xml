@@ -3,7 +3,7 @@
  
 <mapper namespace="StageDMLMapper">
 	
-	<insert id="stageInsert" parameterType="Hashmap"> 
+	<select id="stageInsert" parameterType="Hashmap" resultType="HashMap">
         INSERT INTO TB_FULLDIVE_STAGE
         (
             USER_ID,
@@ -11,7 +11,6 @@
             STAGE_IMAGE,
             STAGE_LOCATION,
             STAGE_TIMESTAMP,
-            STAGE_ARTIST_ID,
             STAGE_DESCRIPTION,
             STAGE_THUMBNAIL_IMAGE,
             STAGE_COMBINE_ID,
@@ -28,7 +27,6 @@
             #{stageImage}, --공연이미지
             #{stageLocation}, --공연장소
             #{stageTimestamp}, --공연시간
-            #{stageArtistId}, --참여아티스트
             #{stageDescription}, --공연설명
             #{stageThumbnailImage},
             #{stageCombineId},
@@ -38,7 +36,9 @@
             #{stageStudioType},
             #{stageImageExtension}
 		)
-    </insert>
+            RETURNING stage_id
+
+    </select>
     
     <update id="stageUpdate" parameterType="Hashmap">
 		UPDATE TB_FULLDIVE_STAGE
@@ -70,5 +70,12 @@
             STAGE_CURRENT=#{stageCurrent}
         WHERE STAGE_ID = #{stageId}
     </update>
+
+    <insert id="stageArtistListInsert" parameterType="Hashmap">
+        INSERT INTO TB_FULLDIVE_STAGE_ARTIST_LIST
+            (STAGE_ID, ARTIST_ID)
+        VALUES
+            (#{stageId}, #{artistId})
+    </insert>
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.fulldive.back.resource;
 
+import com.fulldive.back.entity.StageArtistListEntity;
 import com.fulldive.back.entity.StageEntity;
 import com.fulldive.back.service.StageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,7 @@ public class StageResource{
 	
 	@Autowired
 	StageService stageService;
-	
-	
-	
+
 	/*
 	 * 현재방송중인 방송리스트 조회
 	*/
@@ -112,10 +111,38 @@ public class StageResource{
 	public int stageInsert(@RequestBody Map<String, Object> params) {
 		int result = 200;
 		System.out.println("params: " + params);
-		int resultList = stageService.stageInsert(params);
-		System.out.println(resultList);
-		if(resultList == 0) {result = 400;}
+		Map<String, Object> resultList = stageService.stageInsert(params);
+		System.out.println("resultList: " + resultList);
+		String stageId = (String) resultList.get("stage_id");
+
+		List<String> artistList = new ArrayList<>();
+		artistList = (List) params.get("artistList");
+		System.out.println("artistList: " + artistList.size());
+		this.stageArtistListInsert(artistList, stageId);
+//		if(resultList == 0) {result = 400;}
 		return result;
+	}
+
+
+	/*
+	 * 스테이지 아티스트 리스트 등록
+	 */
+	public void stageArtistListInsert(List<String> params, String stageId) {
+		System.out.println("스테이지 아티스트 등록 진행");
+		for(int i = 0; i < params.size(); i++) {
+			Map<String ,Object> artistList = new HashMap<>();
+			artistList.put("stageId", stageId);
+			artistList.put("artistId", params.get(i));
+			int result = stageService.stageArtistListInsert(artistList);
+		}
+	}
+
+	@PostMapping(value = "/stage/stageArtistList")
+	public Map<String, Object> stageArtistList(@RequestBody Map<String, Object> params) {
+		Map<String, Object> returnResult = new HashMap<>();
+		List<StageArtistListEntity> result = stageService.stageArtistList(params);
+		returnResult.put("artistList", result);
+		return returnResult;
 	}
 	
 	/*

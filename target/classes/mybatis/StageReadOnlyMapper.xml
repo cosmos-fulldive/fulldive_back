@@ -2,7 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="StageReadOnlyMapper">
-	
+	<resultMap type="com.fulldive.back.entity.StageArtistListEntity" id="stageArtistList">
+		<result property="stageId" column="STAGE_ID"/>
+		<result property="artistId" column="ARTIST_ID"/>
+		<result property="artistName" column="ARTIST_NAME"/>
+		<result property="artistImage" column="ARTIST_IMAGE"/>
+	</resultMap>
 	<resultMap type="com.fulldive.back.entity.StageEntity" id="stageSelectRM">
 		<result property="stageId" column="STAGE_ID"/>
 		<result property="userId" column="USER_ID"/>
@@ -22,6 +27,8 @@
 		<result property="createTimestamp" column="CREATE_TIMESTAMP"/>
 		<result property="stageImageExtension" column="STAGE_IMAGE_EXTENSION"/>
 	</resultMap>
+
+
 
 	<!-- 진행중인 스테이지 4개 -->
     <select id="stageStartList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageSelectRM">
@@ -134,5 +141,17 @@
 		ORDER BY STAGE_TIMESTAMP ASC
 			LIMIT 4
 	</select>
-    
+
+	<select id="stageArtistList" parameterType="java.util.HashMap" resultType="com.fulldive.back.entity.StageEntity" resultMap="stageArtistList">
+		SELECT
+			A.LIST_PK, A.STAGE_ID, A.ARTIST_ID, A.CREATE_TIMESTAMP,
+			TFA.ARTIST_NAME, TFA.ARTIST_IMAGE
+		FROM
+			TB_FULLDIVE_STAGE_ARTIST_LIST A
+			LEFT JOIN TB_FULLDIVE_ARTIST AS TFA
+			ON A.ARTIST_ID = TFA.ARTIST_ID
+		WHERE 1=1 AND
+		      STAGE_ID = #{stageId}
+	</select>
+
 </mapper>

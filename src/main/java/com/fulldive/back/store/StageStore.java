@@ -1,5 +1,6 @@
 package com.fulldive.back.store;
 
+import com.fulldive.back.entity.StageArtistListEntity;
 import com.fulldive.back.entity.StageEntity;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -20,8 +21,8 @@ public class StageStore implements StageStoreImpl{
 
 
 	@Override
-	public int stageInsert(Map<String, Object> params) {
-		return sqlSession.insert(DMLMapper+"stageInsert", params);
+	public Map<String, Object> stageInsert(Map<String, Object> params) {
+		return sqlSession.selectOne(DMLMapper+"stageInsert", params);
 	}
 
 	@Override
@@ -57,6 +58,16 @@ public class StageStore implements StageStoreImpl{
 	@Override
 	public int changeStageStage(Map<String, Object> params) {
 		return sqlSession.update(DMLMapper+"changeStageStage", params);
+	}
+
+	@Override
+	public int stageArtistListInsert(Map<String, Object> params) {
+		return sqlSession.insert(DMLMapper + "stageArtistListInsert", params);
+	}
+
+	@Override
+	public List<StageArtistListEntity> stageArtistList(Map<String, Object> params) {
+		return sqlSession.selectList(ReadOnlyMapper+"stageArtistList", params);
 	}
 
 

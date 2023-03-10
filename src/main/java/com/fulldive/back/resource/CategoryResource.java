@@ -30,7 +30,7 @@ public class CategoryResource{
 	public int categoryInsert(@RequestBody Map<String, Object> params) {
 		int result = 200;
 		System.out.println("params: " + params);
-		int resultList = stageService.stageInsert(params);
+		int resultList = categoryService.categoryInsert(params);
 		System.out.println(resultList);
 		if(resultList == 0) {result = 400;}
 		return result;
