@@ -57,7 +57,7 @@ public class UserStore implements UserStoreImpl{
 
 	@Override
 	public List<UserEntity> findUserComet(Map<String, Object> params) {
-		return sqlSession.selectList(ReadOnlyMapper + "findUserComet", params);
+		return sqlSession.selectList(ReadOnlyMapper + "userInfo", params);
 	}
 
 }
